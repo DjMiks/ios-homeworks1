@@ -73,10 +73,12 @@ class ProfileHeaderView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.setupView()
+        self.backgroundColor = .systemGray6
     }
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
+   
     private func setupConstraints() {
         let safeArea = self.safeAreaLayoutGuide
         
