@@ -21,26 +21,50 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.makeKeyAndVisible()
     }
     
-    func createFeedViewController() -> UINavigationController{
-        let feedViewController = FeedViewController()
-        feedViewController.title = "FeeD"
-        feedViewController.tabBarItem = UITabBarItem(title: "FeeD", image: UIImage(systemName: "doc.text"), tag: 0)
-        return UINavigationController(rootViewController: feedViewController)
+    private enum TabItemType {
+        case feed
+        case profile
+        
+        var title: String {
+            switch self {
+            case.feed:
+                return "FeeD"
+            case.profile:
+                return "Log In"
+            }
+        }
+        
+        var tebBarItem: UITabBarItem{
+            switch self {
+            case.feed:
+                return UITabBarItem(
+                    title: "FeeD", image: UIImage(systemName: "doc.text"), tag: 0
+                    )
+            case.profile:
+                return UITabBarItem(title: "Profile", image: UIImage(systemName:"person.crop.circle"), tag: 1)
+                
+            }
+        }
     }
     
-    func createProfileViewController() -> UINavigationController{
-        let profileViewController = LogInViewController()
-        profileViewController.title = "Log In"
-        profileViewController.tabBarItem = UITabBarItem(title: "Profile", image:UIImage(systemName:"person.crop.circle"), tag:1)
-        
-    return UINavigationController(rootViewController: profileViewController)
-        
+    private func createNavController(for tabItemType: TabItemType) ->
+    UINavigationController {
+        let viewController: UIViewController
+        switch tabItemType{
+        case.feed:
+            viewController = FeedViewController()
+        case.profile:
+            viewController = LogInViewController()
+        }
+        viewController.title = tabItemType.title
+        viewController.tabBarItem = tabItemType.tebBarItem
+        return UINavigationController(rootViewController:viewController)
     }
     
-    func createTabBarController() -> UITabBarController {
+   private func createTabBarController() -> UITabBarController {
         let tabBarController = UITabBarController()
         UITabBar.appearance().backgroundColor = .white
-        tabBarController.viewControllers = [createFeedViewController(), createProfileViewController()]
+       tabBarController.viewControllers = [self.createNavController(for: .feed), self.createNavController(for: .profile)]
         return tabBarController
     }
 }

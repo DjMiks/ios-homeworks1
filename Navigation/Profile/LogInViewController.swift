@@ -124,10 +124,18 @@ class LogInViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupView()
         setupSubview()
         setupConstraints()
        
+    }
+    override func viewWillAppear(_ animated: Bool){
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.navigationBar.isHidden = true
+        self.navigationController?.tabBarController?.tabBar.isHidden = true
+        setupKeyboardObservers()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
