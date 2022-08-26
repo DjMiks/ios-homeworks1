@@ -12,7 +12,8 @@ class ProfileViewController: UIViewController {
     fileprivate lazy var data = PostTape.make()
     
     private lazy var tableView: UITableView = {
-        let tableView = UITableView.init(frame: .zero, style: .grouped)
+        let tableView = UITableView.init (frame: .zero, style: .grouped)
+        
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
         return tableView
@@ -20,6 +21,7 @@ class ProfileViewController: UIViewController {
     
     private enum CellReuseID: String {
         case base = "BaseTableView_ReuseID"
+        case photos = "PhotosTableView_ReuseID"
     }
     private enum HeaderFooterReuseID: String {
         case base = "TableSectionFooterHeaderView_ReuseID"
@@ -64,6 +66,11 @@ class ProfileViewController: UIViewController {
         tableView.backgroundColor = .white
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: CellReuseID.base.rawValue)
         
+        tableView.register(
+            PhotosTableViewCell.self,
+        forCellReuseIdentifier:CellReuseID.photos.rawValue
+        )
+        
         tableView.register(ProfileTableHeaderView.self, forHeaderFooterViewReuseIdentifier: HeaderFooterReuseID.base.rawValue)
         
         tableView.dataSource = self
@@ -71,34 +78,65 @@ class ProfileViewController: UIViewController {
     }
 }
 
-// MARK: Имя маркера
+// MARK: extension
 
 extension ProfileViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        250
+        if section == 0 {
+            return 250 }
+        else {
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        if section == 0 {
         guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: HeaderFooterReuseID.base.rawValue) as? ProfileTableHeaderView else {
-            fatalError("could not dequeue")
+            fatalError("could not dequeueReusableCell")
         }
         return headerView
+        } else {
+            let emtyHeader = UIView()
+            return emtyHeader
+        }
+}
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 0 {
+            let nextViewController = PhotosViewController()
+            navigationController?.navigationBar.isHidden = false
+            navigationController?.pushViewController(nextViewController, animated: true)
+        }
     }
 }
 
 extension ProfileViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        1
+        2
     }
     func tableView(_ tableView: UITableView,numberOfRowsInSection section: Int) -> Int {
-        data.count
-    }
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: CellReuseID.base.rawValue, for: indexPath) as? PostTableViewCell else {
-            fatalError("could not dequeue")
+        if section == 0 {
+            return 1
+        } else {
+            return data.count
         }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.section == 0 {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: CellReuseID.photos.rawValue, for: indexPath) as? PhotosTableViewCell else {
+            fatalError("could not dequeueReusableCell")
+        }
+            return cell
+        }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: CellReuseID.base.rawValue, for:indexPath)
+                as? PostTableViewCell else {
+            fatalError("cloud not dequeueReusableCell")
+        }
+        
         let data = data[indexPath.row]
         cell.setup(with: data)
         
