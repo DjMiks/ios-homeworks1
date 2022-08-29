@@ -14,49 +14,44 @@ class PostTableViewCell: UITableViewCell {
     private lazy var authorLabel: UILabel = {
         let authorLabel = UILabel()
         authorLabel.translatesAutoresizingMaskIntoConstraints = false
-
         authorLabel.font = UIFont.systemFont(ofSize: 20, weight:.bold)
         authorLabel.numberOfLines = 2
         authorLabel.textColor = .blue
         
-        return authorLabel
+         return authorLabel
     }()
     
     private lazy var postImage: UIImageView = {
         let postImage = UIImageView()
         postImage.translatesAutoresizingMaskIntoConstraints = false
-
         postImage.contentMode = .scaleAspectFit
         postImage.backgroundColor = .black
         
-        return postImage
+         return postImage
     }()
     
     private lazy var postDescription: UILabel = {
        let postDescription = UILabel()
+        postDescription.translatesAutoresizingMaskIntoConstraints = false
         postDescription.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         postDescription.textColor = .systemGray
         postDescription.numberOfLines = 0
         
-        postDescription.translatesAutoresizingMaskIntoConstraints = false
-        return postDescription
+        
+         return postDescription
     }()
     
     private lazy var numberOfLike: UILabel = {
        let numberOfLike = UILabel()
         numberOfLike.translatesAutoresizingMaskIntoConstraints = false
-
         numberOfLike.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         numberOfLike.textColor = .black
-        
-        
-        return numberOfLike
+         return numberOfLike
     }()
     
     private lazy var numberOfView: UILabel = {
        let numberOfView = UILabel()
         numberOfView.translatesAutoresizingMaskIntoConstraints = false
-
         numberOfView.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         numberOfView.textColor = .black
         
@@ -65,6 +60,7 @@ class PostTableViewCell: UITableViewCell {
     
     private lazy var stackView: UIStackView = {
         let strackView = UIStackView()
+        strackView.translatesAutoresizingMaskIntoConstraints = false
         strackView.clipsToBounds = true
         
         strackView.axis = .horizontal
@@ -73,9 +69,7 @@ class PostTableViewCell: UITableViewCell {
         
         strackView.addArrangedSubview(numberOfLike)
         strackView.addArrangedSubview(numberOfView)
-       
-        strackView.translatesAutoresizingMaskIntoConstraints = false
-        return strackView
+         return strackView
     }()
     
     // MARK: cycle

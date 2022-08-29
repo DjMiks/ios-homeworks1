@@ -66,7 +66,6 @@
 		0A65DD242862634200B03691 = {
 			isa = PBXGroup;
 			children = (
-				0A21185C28B537340088E94F /* AllPhotos.swift */,
 				0A65DD2F2862634200B03691 /* Navigation */,
 				0A65DD2E2862634200B03691 /* Products */,
 			);
@@ -83,6 +82,7 @@
 		0A65DD2F2862634200B03691 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				0A21185C28B537340088E94F /* AllPhotos.swift */,
 				0A65DD302862634200B03691 /* AppDelegate.swift */,
 				0A65DD322862634200B03691 /* SceneDelegate.swift */,
 				0ADE5AD7289ACD6800DEBC90 /* Profile */,

@@ -14,91 +14,79 @@ class PhotosTableViewCell: UITableViewCell {
     private lazy var photosTitle: UILabel = {
         
         let photosTitle = UILabel()
+        photosTitle.translatesAutoresizingMaskIntoConstraints = false
+        
         photosTitle.textColor = .black
         photosTitle.font = UIFont.systemFont (ofSize: 24, weight: .bold)
-            photosTitle.text = "My Photo"
-            
-            photosTitle.translatesAutoresizingMaskIntoConstraints = false
-            return photosTitle
+        photosTitle.text = "My Photo"
+         return photosTitle
     }()
 
         private lazy var photosArrow: UIImageView = {
            let photosArrow = UIImageView()
-            
-            let image = UIImage(systemName: "arrow.riaht")?.withTintColor(.black,renderingMode:.alwaysOriginal)
-            photosArrow.image = image
-            
             photosArrow.translatesAutoresizingMaskIntoConstraints = false
-            return photosArrow
+            
+           let image = UIImage(systemName: "arrow.riaht")?.withTintColor(.black,renderingMode:.alwaysOriginal)
+            photosArrow.image = image
+              return photosArrow
     }()
     
     private lazy var titleStrackView: UIStackView = {
         let titleStackView = UIStackView()
-        
+        titleStackView.translatesAutoresizingMaskIntoConstraints = false
         titleStackView.axis = .horizontal
         titleStackView.distribution = .equalSpacing
         titleStackView.alignment = .center
         
         titleStackView.addArrangedSubview(photosTitle)
         titleStackView.addArrangedSubview(photosArrow)
-        
-        titleStackView.translatesAutoresizingMaskIntoConstraints = false
-        return titleStackView
+         return titleStackView
     }()
     
     private lazy var photo1: UIImageView = {
         let photo1 = UIImageView()
-        
+        photo1.translatesAutoresizingMaskIntoConstraints = false
         photo1.image = UIImage(named: "1")
         photo1.contentMode = .scaleAspectFill
         photo1.layer.cornerRadius = 6
         photo1.clipsToBounds = true
-        
-        photo1.translatesAutoresizingMaskIntoConstraints = false
-        return photo1
+         return photo1
         
     }()
     
     private lazy var photo2: UIImageView = {
-       let photo2 = UIImageView()
-        
+        let photo2 = UIImageView()
+        photo2.translatesAutoresizingMaskIntoConstraints = false
         photo2.image = UIImage(named: "2")
         photo2.contentMode = .scaleAspectFill
         photo2.layer.cornerRadius = 6
         photo2.clipsToBounds = true
-        
-        photo2.translatesAutoresizingMaskIntoConstraints = false
-        
-        return photo2
+         return photo2
     }()
     
     private lazy var photo3: UIImageView = {
-       let photo3 = UIImageView()
-        
+        let photo3 = UIImageView()
+        photo3.translatesAutoresizingMaskIntoConstraints = false
         photo3.image = UIImage(named: "3")
         photo3.contentMode = .scaleAspectFill
         photo3.layer.cornerRadius = 6
         photo3.clipsToBounds = true
-        
-        photo3.translatesAutoresizingMaskIntoConstraints = false
-        return photo3
+         return photo3
         
     }()
     private lazy var photo4: UIImageView = {
         let photo4 = UIImageView()
-        
+        photo4.translatesAutoresizingMaskIntoConstraints = false
         photo4.image = UIImage(named: "4")
         photo4.contentMode = .scaleAspectFill
         photo4.layer.cornerRadius = 6
         photo4.clipsToBounds = true
-        
-        photo4.translatesAutoresizingMaskIntoConstraints = false
-        
-        return photo4
+         return photo4
     }()
     
     private lazy var photoStackView: UIStackView = {
        let photoStackView = UIStackView ()
+        photoStackView.translatesAutoresizingMaskIntoConstraints = false
         
         photoStackView.axis = .horizontal
         photoStackView.distribution = .fillEqually
@@ -109,10 +97,7 @@ class PhotosTableViewCell: UITableViewCell {
         photoStackView.addArrangedSubview(photo2)
         photoStackView.addArrangedSubview(photo3)
         photoStackView.addArrangedSubview(photo4)
-        
-        photoStackView.translatesAutoresizingMaskIntoConstraints = false
-        
-        return photoStackView
+         return photoStackView
     }()
     
     // MARK: CYCLE

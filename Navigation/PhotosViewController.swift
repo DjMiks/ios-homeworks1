@@ -7,18 +7,18 @@
 
 import UIKit
 
+private enum CollectionCellReuseID: String {
+    case base = "CollectionCellReuseID_ReuseID"
+}
+
 class PhotosViewController: UIViewController {
     
     // MARK: DATA
 
-    fileprivate lazy var  photoCollection: [AllPhotos] = AllPhotos.myPhotos()
+    private lazy var  photoCollection: [AllPhotos] = AllPhotos.myPhotos()
 
     // MARK: SubView
-    
-    private enum CollectionCellReuseID: String {
-        case base = "CollectionCellReuseID_ReuseID"
-    }
-    
+       
     private let collectiontView: UICollectionView = {
        let viewFlowLayout = UICollectionViewFlowLayout()
        let collectionView = UICollectionView(
@@ -27,7 +27,7 @@ class PhotosViewController: UIViewController {
         collectionView.register(PhotosCollectionViewCell.self, forCellWithReuseIdentifier: CollectionCellReuseID.base.rawValue)
         
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        return collectionView
+         return collectionView
     }()
     
     // MARK: CYCLE
@@ -86,7 +86,7 @@ extension PhotosViewController: UICollectionViewDataSource {
         
         let photo = photoCollection[indexPath.row]
         cell.setupMethod(with: photo)
-        return cell
+         return cell
     }
 }
 
@@ -101,7 +101,7 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout{
         let totalSpacing: CGFloat = 2 * 8 + (itemsInRow - 1) * 8
         let finalWidth = (width - totalSpacing) / itemsInRow
         
-        return floor(finalWidth)
+         return floor(finalWidth)
     }
     
     func collectionView(_ collectionView: UICollectionView,
@@ -109,7 +109,7 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout{
         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
         let width = itemWidth(for: view.frame.width, spacing: 8)
-        return CGSize(width:width, height:width)
+         return CGSize(width:width, height:width)
     }
     
     func collectionView(

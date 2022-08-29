@@ -12,10 +12,9 @@ class PhotosCollectionViewCell: UICollectionViewCell {
     
     private lazy var photoPreview: UIImageView = {
         let photoPreview = UIImageView(frame: .zero)
-        photoPreview.contentMode = .scaleAspectFill
-        
         photoPreview.translatesAutoresizingMaskIntoConstraints = false
-        return photoPreview
+        photoPreview.contentMode = .scaleAspectFill
+         return photoPreview
     }()
     
     required init?(coder: NSCoder) {
