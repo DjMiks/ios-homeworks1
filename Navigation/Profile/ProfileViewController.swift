@@ -43,7 +43,11 @@ class ProfileViewController: UIViewController {
     // MARK: METOD
     
     private func setupView() {
-        view.backgroundColor = .systemGray6
+        #if DEBUG
+        view.backgroundColor = .systemYellow
+        #else
+        view.backgroundColor = .systemGreen
+        #endif
     }
     private func setupSubview() {
         view.addSubview(tableView)

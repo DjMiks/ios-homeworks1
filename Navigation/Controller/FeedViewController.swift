@@ -6,10 +6,11 @@
 //
 
 import UIKit
+import StorageService
 
 class FeedViewController: UIViewController {
     
-    open var post = Post(title: "You Post")
+     var post = Post(title: "You Post")
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -8,8 +8,6 @@
 import UIKit
 
 class InfoViewController: UIViewController {
-
-   
     
     private lazy var button: UIButton = {
         let button = UIButton()
@@ -50,6 +48,4 @@ class InfoViewController: UIViewController {
    
     }
     
-
-
 }
