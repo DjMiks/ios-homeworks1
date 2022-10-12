@@ -17,7 +17,7 @@ class ProfileHeaderView: UIView {
         profileImage.layer.borderWidth = 3
         profileImage.layer.borderColor = UIColor.green.cgColor
         profileImage.translatesAutoresizingMaskIntoConstraints = false
-        return profileImage
+         return profileImage
     }()
 
     private lazy var profileName: UILabel = {
@@ -27,7 +27,7 @@ class ProfileHeaderView: UIView {
         profileName.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         profileName.textColor = UIColor.black
         profileName.translatesAutoresizingMaskIntoConstraints = false
-        return profileName
+         return profileName
     }()
     
     private lazy var profileStatus: UILabel = {
@@ -36,7 +36,7 @@ class ProfileHeaderView: UIView {
         profileStatus.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         profileStatus.textColor = UIColor.black
         profileStatus.translatesAutoresizingMaskIntoConstraints = false
-        return profileStatus
+         return profileStatus
     }()
     
     private lazy var statusButton: UIButton = {
@@ -52,7 +52,7 @@ class ProfileHeaderView: UIView {
         statusButton.layer.shadowColor = UIColor.black.cgColor
         statusButton.layer.shadowOpacity = 0.7
         statusButton.translatesAutoresizingMaskIntoConstraints = false
-        return statusButton
+         return statusButton
         
     }()
     
@@ -65,7 +65,7 @@ class ProfileHeaderView: UIView {
         uiStatus.backgroundColor = .white
         uiStatus.layer.cornerRadius = 12
         uiStatus.translatesAutoresizingMaskIntoConstraints = false
-        return uiStatus
+         return uiStatus
     }()
     
     private lazy var statusText: String = " "

@@ -6,10 +6,11 @@
 //
 
 import UIKit
+import StorageService
 
 class FeedViewController: UIViewController {
     
-    open var post = Post(title: "You Post")
+     var post = Post(title: "You Post")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,14 +20,14 @@ class FeedViewController: UIViewController {
     //Кнопка для перехода в посты
 private lazy var button: UIButton = {
         let button = UIButton()
+    button.translatesAutoresizingMaskIntoConstraints = false
     button.backgroundColor = .lightText
         button.layer.cornerRadius = 15
         button.setTitle("Show my Post", for: .normal)
     button.setTitleColor(.darkGray, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
+         return button
 }()
     
     private func setupButton() {

@@ -13,23 +13,18 @@ class LogInViewController: UIViewController {
     
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.showsVerticalScrollIndicator = true
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.backgroundColor = .white
-        
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        
-        return scrollView
+         return scrollView
     }()
     
     private lazy var contentView: UIView = {
         let contentView = UIView()
-        contentView.backgroundColor = .white
-        
         contentView.translatesAutoresizingMaskIntoConstraints = false
-        
-        return contentView
+        contentView.backgroundColor = .white
+         return contentView
         
     }()
     
@@ -37,12 +32,12 @@ class LogInViewController: UIViewController {
         let image = UIImage(named: "logo_vk")
         let logoImageVK = UIImageView(image: image)
         logoImageVK.translatesAutoresizingMaskIntoConstraints = false
-        return logoImageVK
+         return logoImageVK
     }()
 
     private lazy var loginTextField: UITextField = { [unowned self]
         in let loginTextField = UITextField()
-        
+        loginTextField.translatesAutoresizingMaskIntoConstraints = false
         loginTextField.placeholder = "Email or Phone"
         loginTextField.leftView = UIView(frame: CGRect(x:0, y:0, width:15, height: loginTextField.frame.height))
         loginTextField.leftViewMode = .always
@@ -58,14 +53,11 @@ class LogInViewController: UIViewController {
         loginTextField.autocorrectionType = .no
         loginTextField.keyboardType = .namePhonePad
         loginTextField.delegate = self
-        
-        loginTextField.translatesAutoresizingMaskIntoConstraints = false
-        
-        return loginTextField
+         return loginTextField
     }()
     
     private lazy var passwordTextField: UITextField = { [unowned self] in let passwordTextField = UITextField()
-    
+        passwordTextField.translatesAutoresizingMaskIntoConstraints = false
         passwordTextField.placeholder = "Password"
         passwordTextField.leftView = UIView(frame: CGRect(x:0, y:0, width:15, height: passwordTextField.frame.height))
         passwordTextField.leftViewMode = .always
@@ -82,12 +74,12 @@ class LogInViewController: UIViewController {
         passwordTextField.keyboardType = .default
         passwordTextField.isSecureTextEntry = true
         passwordTextField.delegate = self
-        passwordTextField.translatesAutoresizingMaskIntoConstraints = false
-        return passwordTextField
+          return passwordTextField
     }()
     
     private lazy var stackView: UIStackView = {
         let strackView = UIStackView ()
+        strackView.translatesAutoresizingMaskIntoConstraints = false
         strackView.layer.cornerRadius = 10
         strackView.layer.borderColor = UIColor.lightGray.cgColor
         strackView.layer.borderWidth = 0.5
@@ -100,9 +92,7 @@ class LogInViewController: UIViewController {
         
         strackView.addArrangedSubview(loginTextField)
         strackView.addArrangedSubview(passwordTextField)
-        strackView.translatesAutoresizingMaskIntoConstraints = false
-        
-        return strackView
+         return strackView
     }()
     
     private lazy var logInButton: CustomButton = {
@@ -116,7 +106,7 @@ class LogInViewController: UIViewController {
         
         logInButton.translatesAutoresizingMaskIntoConstraints = false
        
-        return logInButton
+         return logInButton
     }()
     
     //MARK: Сycles
