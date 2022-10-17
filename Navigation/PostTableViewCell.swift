@@ -146,9 +146,9 @@ class PostTableViewCell: UITableViewCell {
         let filter = ImageProcessor()
         guard let image = postImage.image else { return }
 
-        filter.processImage(sourceImage: image, filter: ColorFilter.noir) {
-            filteredImage in
-            postImage.image = filteredImage
+        filter.processImage(sourceImage: image, filter: .noir) {
+             postImage.image = $0
         }
     }
 }
+
