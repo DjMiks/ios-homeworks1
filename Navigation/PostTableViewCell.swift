@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import iOSIntPackage
 
 class PostTableViewCell: UITableViewCell {
 
@@ -139,5 +140,15 @@ class PostTableViewCell: UITableViewCell {
         postDescription.text = post.description
         numberOfLike.text = String("Likes: \(post.likes)")
         numberOfView.text = String("Views: \(post.views)")
+        
+        // MARK: color filter
+        
+        let filter = ImageProcessor()
+        guard let image = postImage.image else { return }
+
+        filter.processImage(sourceImage: image, filter: .noir) {
+             postImage.image = $0
+        }
     }
 }
+

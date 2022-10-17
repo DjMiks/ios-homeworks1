@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class ProfileHeaderView: UIView {
 
@@ -70,65 +71,76 @@ class ProfileHeaderView: UIView {
     
     private lazy var statusText: String = " "
     
+    // MARK: Lifecycle
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.setupView()
+        self .setupView()
         self.backgroundColor = .systemGray6
     }
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
-   
-    private func setupConstraints() {
-        let safeArea = self.safeAreaLayoutGuide
+    
+    // MARK: Private Methods
+            
+        private func setupView() {
+            self.addSubview(profileImage)
+            self.addSubview(profileName)
+            self.addSubview(profileStatus)
+            self.addSubview(statusButton)
+            self.addSubview(uiStatus)
+         //   setupConstraints()
         
-        
-        NSLayoutConstraint.activate([
-            profileImage.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 16),
-            profileImage.widthAnchor.constraint(equalToConstant: 125),
-            profileImage.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 16),
-            profileImage.heightAnchor.constraint(equalToConstant: 125),
             
-            profileName.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
-            profileName.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 150),
-            profileName.widthAnchor.constraint(equalToConstant: 110),
-            profileName.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 27),
-            profileName.heightAnchor.constraint(equalToConstant: 18),
-            
-            profileStatus.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 150),
-            profileStatus.widthAnchor.constraint(equalToConstant: 170),
-            profileStatus.heightAnchor.constraint(equalToConstant: 20),
-            profileStatus.bottomAnchor.constraint(equalTo: statusButton.topAnchor, constant: -65),
-            profileStatus.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            
-            statusButton.heightAnchor.constraint(equalToConstant: 50),
-            statusButton.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: 40),
-            statusButton.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
-            statusButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16),
-            
-            uiStatus.heightAnchor.constraint(equalToConstant: 40),
-            uiStatus.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 150),
-            uiStatus.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -16),
-            uiStatus.bottomAnchor.constraint(equalTo: statusButton.topAnchor, constant: -16)
-               
-        ])
-    }
-    private func setupView() {
-        self.addSubview(profileImage)
-        self.addSubview(profileName)
-        self.addSubview(profileStatus)
-        self.addSubview(statusButton)
-        self.addSubview(uiStatus)
-        setupConstraints()
+    //MARK: Snapkit constraints
+    
+     profileImage.snp.makeConstraints { (make) -> Void in
+        make.leading.equalTo(self).offset(16)
+        make.top.equalTo(self).offset(16)
+        make.width.equalTo(125)
+        make.height.equalTo(125)
     }
     
+    profileName.snp.makeConstraints{ (make) -> Void in
+        make.leading.equalTo(self).offset(150)
+        make.trailing.equalTo(self).offset(16)
+        make.top.equalTo(self).offset(27)
+        make.height.equalTo(18)
+     }
+    
+    profileStatus.snp.makeConstraints { (make) -> Void in
+        make.leading.equalTo(self).offset(150)
+        make.trailing.equalTo(self).offset(16)
+        make.height.equalTo(20)
+        make.bottom.equalTo(statusButton.snp_topMargin).offset(-65)
+            
+     }
+    
+    statusButton.snp.makeConstraints { (make) -> Void in
+        make.leading.equalTo(self).offset(16)
+        make.trailing.equalTo(self).offset(-16)
+        make.top.equalTo(self).offset(185)
+        make.height.equalTo(50)
+        make.bottom.equalTo(self).offset(-15)
+     }
+    
+    uiStatus.snp.makeConstraints { (make) -> Void in
+        make.leading.equalTo(self).offset(150)
+        make.trailing.equalTo(self).offset(-16)
+        make.height.equalTo(40)
+        make.bottom.equalTo(statusButton.snp_topMargin).offset(-16)
+      }
+   }
+    
+//MARK: Action
+    
     @objc private func buttonPressed() {
-       
         let text = statusText
         profileStatus.text = text
     }
     
-    @objc func changeProfileStatus(_ uiStatus: UITextField) {
+    @objc  func changeProfileStatus(_ uiStatus: UITextField) {
         statusText = uiStatus.text ?? "Empty Status"
     }
 }
