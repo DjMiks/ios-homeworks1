@@ -8,10 +8,18 @@
 import UIKit
 import SnapKit
 
+#if DEBUG
+let userService = TestUserService()
+#else
+let userService = CurrentUserService()
+#endif
+
+let logUser = userService.user
+
 class ProfileHeaderView: UIView {
 
     private lazy var profileImage: UIImageView = {
-        let stand = UIImage(named: "standup")
+        let stand = logUser.avatar
         let profileImage = UIImageView(image: stand)
         profileImage.clipsToBounds = true
         profileImage.layer.cornerRadius = 60
@@ -24,7 +32,7 @@ class ProfileHeaderView: UIView {
     private lazy var profileName: UILabel = {
         
         let profileName = UILabel()
-        profileName.text = "StandUP"
+        profileName.text = logUser.fullName
         profileName.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         profileName.textColor = UIColor.black
         profileName.translatesAutoresizingMaskIntoConstraints = false
@@ -33,7 +41,7 @@ class ProfileHeaderView: UIView {
     
     private lazy var profileStatus: UILabel = {
       let profileStatus = UILabel()
-        profileStatus.text = "Change your status"
+        profileStatus.text = logUser.status
         profileStatus.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         profileStatus.textColor = UIColor.black
         profileStatus.translatesAutoresizingMaskIntoConstraints = false

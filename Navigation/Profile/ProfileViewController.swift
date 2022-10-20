@@ -11,6 +11,9 @@ class ProfileViewController: UIViewController {
     
     fileprivate lazy var data = PostTape.make()
     
+    var userService: UserService
+    var login: String?
+    
     private lazy var tableView: UITableView = {
         let tableView = UITableView.init (frame: .zero, style: .grouped)
         
@@ -25,8 +28,20 @@ class ProfileViewController: UIViewController {
     }
     private enum HeaderFooterReuseID: String {
         case base = "TableSectionFooterHeaderView_ReuseID"
+        
     }
-// MARK: - CYCLE
+// MARK: user service
+   
+    init(userService: UserService, login: String){
+        self.userService = userService
+        self.login = login
+        super.init(nibName: nil, bundle: nil)
+    }
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) not been launched")
+    }
+    
+// MARK: - lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
