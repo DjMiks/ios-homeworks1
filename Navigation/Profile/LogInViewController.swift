@@ -171,31 +171,6 @@ class LogInViewController: UIViewController {
         }
     }
 
-       
-//        let proflaVC = ProfileViewController(userService: log, login: loginTextField.text!
-//        )
-//        proflaVC.userService = log
-//        if loginTextField.text == log.user.login {
-//        self.navigationController?.pushViewController(proflaVC, animated: true)
-//
-//        }else{
-//            let alert = UIAlertController(
-//                title: "authorization failed",
-//                message: "login error",
-//                preferredStyle: .alert
-//            )
-//            alert.addAction(UIAlertAction(
-//                title: "Okey",
-//                style: .default,
-//                handler: { _ in
-//                    NSLog("The invalid login error.")
-//                } ))
-//            self.present(
-//                alert,
-//                animated:true,
-//                completion: nil)
-//
-       
         
 //MARK: Private metod
     private func setupView() {

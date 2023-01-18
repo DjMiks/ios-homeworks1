@@ -27,13 +27,3 @@ class CurrentUserService: UserService {
 }
 
 
-//  public  let user = Choice.combat.inistance
-//
-//    func loginCheck(login: String) -> User? {
-//        if login == user.login {
-//            return user
-//        } else {
-//            return nil
-//        }
-//    }
-//}

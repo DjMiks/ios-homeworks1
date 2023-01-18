@@ -28,18 +28,3 @@ public class User {
     }
 }
 
-
-//enum Choice {
-//    case combat
-//    case test
-//
-//    var inistance: User {
-//        switch self {
-//        case.combat:
-//            return User(login: "combat", fullName: "Ruslan", avatar: UIImage(named: "Belyu"), status: "Have a nice day, Ruslan")
-//        case.test:
-//            return User(login: "test", fullName: "Test_User", avatar: UIImage(named: "logo_vk"), status: "Testing")
-//        }
-//    }
-    
-
