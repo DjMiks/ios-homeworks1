@@ -37,6 +37,14 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
         self.addSubview(self.profileHeaderView)
     }
     
+    // MARK: - Private
+    
+    func setup (fullName: String, statusText: String, avatar: UIImage) {
+        profileHeaderView.profileName.text = fullName
+        profileHeaderView.profileStatus.text = statusText
+        profileHeaderView.profileImage.image = avatar
+    }
+    
     private func setupConstraints() {
         let safeAreeGuide = self.safeAreaLayoutGuide
         NSLayoutConstraint.activate([

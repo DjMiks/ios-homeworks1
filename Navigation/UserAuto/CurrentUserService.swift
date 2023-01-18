@@ -6,17 +6,34 @@
 //
 
 import Foundation
+import UIKit
 
 
 class CurrentUserService: UserService {
     
-    let user = Choice.combat.inistance
+    public var currentUser = User(login: "StandUp", fullName: "StandUP", avatar: UIImage(named: "standup")!, status: "gud")
     
-    func loginCheck(login: String) -> User? {
+    public var password: String = "standup"
+    
+    func loginCheck (login: String) -> User? {
+        let user = currentUser
         if login == user.login {
             return user
         } else {
             return nil
         }
     }
+
 }
+
+
+//  public  let user = Choice.combat.inistance
+//
+//    func loginCheck(login: String) -> User? {
+//        if login == user.login {
+//            return user
+//        } else {
+//            return nil
+//        }
+//    }
+//}

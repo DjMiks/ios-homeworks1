@@ -11,8 +11,7 @@ class ProfileViewController: UIViewController {
     
     fileprivate lazy var data = PostTape.make()
     
-    var userService: UserService
-    var login: String?
+    var currenUser: User? = nil
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView.init (frame: .zero, style: .grouped)
@@ -30,17 +29,7 @@ class ProfileViewController: UIViewController {
         case base = "TableSectionFooterHeaderView_ReuseID"
         
     }
-// MARK: user service
-   
-    init(userService: UserService, login: String){
-        self.userService = userService
-        self.login = login
-        super.init(nibName: nil, bundle: nil)
-    }
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) not been launched")
-    }
-    
+  
 // MARK: - lifecycle
     
     override func viewDidLoad() {
@@ -80,7 +69,7 @@ class ProfileViewController: UIViewController {
         ])
     }
     
-    private func tuneTableView() {
+     func tuneTableView() {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.backgroundColor = .white
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: CellReuseID.base.rawValue)
@@ -114,6 +103,9 @@ extension ProfileViewController: UITableViewDelegate {
         if section == 0 {
         guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: HeaderFooterReuseID.base.rawValue) as? ProfileTableHeaderView else {
             fatalError("could not dequeueReusableCell")
+        }
+        if let currentUser = currenUser {
+        headerView.setup(fullName: currentUser.fullName, statusText: currentUser.status, avatar: currentUser.avatar)
         }
         return headerView
         } else {

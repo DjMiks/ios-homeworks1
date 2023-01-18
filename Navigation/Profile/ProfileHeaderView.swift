@@ -8,19 +8,11 @@
 import UIKit
 import SnapKit
 
-#if DEBUG
-let userService = TestUserService()
-#else
-let userService = CurrentUserService()
-#endif
-
-let logUser = userService.user
-
 class ProfileHeaderView: UIView {
 
-    private lazy var profileImage: UIImageView = {
-        let stand = logUser.avatar
-        let profileImage = UIImageView(image: stand)
+     lazy var profileImage: UIImageView = {
+         
+        let profileImage = UIImageView()
         profileImage.clipsToBounds = true
         profileImage.layer.cornerRadius = 60
         profileImage.layer.borderWidth = 3
@@ -29,26 +21,25 @@ class ProfileHeaderView: UIView {
          return profileImage
     }()
 
-    private lazy var profileName: UILabel = {
+     lazy var profileName: UILabel = {
         
         let profileName = UILabel()
-        profileName.text = logUser.fullName
         profileName.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         profileName.textColor = UIColor.black
         profileName.translatesAutoresizingMaskIntoConstraints = false
          return profileName
     }()
     
-    private lazy var profileStatus: UILabel = {
+     lazy var profileStatus: UILabel = {
+         
       let profileStatus = UILabel()
-        profileStatus.text = logUser.status
         profileStatus.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         profileStatus.textColor = UIColor.black
         profileStatus.translatesAutoresizingMaskIntoConstraints = false
          return profileStatus
     }()
     
-    private lazy var statusButton: UIButton = {
+     lazy var statusButton: UIButton = {
         let statusButton = UIButton (type: .system)
         statusButton.backgroundColor = .systemBlue
         statusButton.setTitleColor(.white, for: .normal)

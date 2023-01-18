@@ -6,13 +6,18 @@
 //
 
 import Foundation
+import UIKit
 
 
 class TestUserService: UserService {
     
-    let user = Choice.test.inistance
+    let testUser = User(login: "test", fullName: "Test", avatar: UIImage(named: "logo_vk")!, status: "Test profil")
+    
+    let password: String = "test"
+      
     
     func loginCheck(login: String) -> User? {
+        let user = testUser
         if login == user.login{
             return user
         } else {
