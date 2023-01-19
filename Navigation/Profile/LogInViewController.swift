@@ -7,7 +7,7 @@
 
 import UIKit
 
-// MARK: subView
+// MARK: subview
 
 class LogInViewController: UIViewController {
     
@@ -136,7 +136,7 @@ class LogInViewController: UIViewController {
         removeKeyboardObservers()
     }
     
-    //MARK: Objc
+    //MARK: Objc methods
     
     @objc func willShowKeyBoard(_ notification: NSNotification) {
         let keyboardHeight = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height
@@ -147,10 +147,32 @@ class LogInViewController: UIViewController {
         scrollView.contentInset.bottom = 0.0
     }
     
+     
     @objc private func tap() {
-        let proflaVC = ProfileViewController()
-        self.navigationController?.pushViewController(proflaVC, animated: true)
+        
+#if DEBUG
+        let log = TestUserService().loginCheck(login: loginTextField.text!)
+        let pass = TestUserService().password
+#else
+        let log = CurrentUserService().loginCheck(login: loginTextField.text!)
+        let pass = CurrentUserService().password
+#endif
+        
+        if let loginUser = log {
+            if pass == passwordTextField.text! {
+                let proflaVC = ProfileViewController()
+                proflaVC.currenUser = loginUser
+                self.navigationController?.pushViewController(proflaVC, animated: true)
+            } else {
+                print ("The invalid password error.")
+            }
+        } else {
+            print("The invalid login error.")
+        }
     }
+
+
+        
 //MARK: Private metod
     private func setupView() {
         self.view.backgroundColor = .white
