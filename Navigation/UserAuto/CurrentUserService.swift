@@ -9,21 +9,28 @@ import Foundation
 import UIKit
 
 
-class CurrentUserService: UserService {
+ final class CurrentUserService: UserService {
     
-    public var currentUser = User(login: "StandUp", fullName: "StandUP", avatar: UIImage(named: "standup")!, status: "gud")
+     let currentUser = User(login: "StandUp", fullName: "StandUP", avatar: UIImage(named: "standup")!, status: "Welcome to the profile StandUp.")
     
-    public var password: String = "standup"
+     let password: String = "standup"
     
     func loginCheck (login: String) -> User? {
-        let user = currentUser
-        if login == user.login {
-            return user
-        } else {
-            return nil
-        }
-    }
+        login == currentUser.login ? currentUser : nil
 
+    //  ранее использовал
+        
+//    func loginCheck (login: String) -> User? {
+//        let user = currentUser
+//        if login == user.login {
+//            return user
+//        } else {
+//            return nil
+//        }
+//    }
+
+    }
 }
+    
 
 
