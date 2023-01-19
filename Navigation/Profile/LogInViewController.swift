@@ -7,9 +7,15 @@
 
 import UIKit
 
-// MARK: subview
+
 
 class LogInViewController: UIViewController {
+    
+    // MARK: delegete
+    
+    var loginDelegate: LoginViewControllerDelegate?
+    
+    // MARK: subview
     
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -17,14 +23,14 @@ class LogInViewController: UIViewController {
         scrollView.showsVerticalScrollIndicator = true
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.backgroundColor = .white
-         return scrollView
+        return scrollView
     }()
     
     private lazy var contentView: UIView = {
         let contentView = UIView()
         contentView.translatesAutoresizingMaskIntoConstraints = false
         contentView.backgroundColor = .white
-         return contentView
+        return contentView
         
     }()
     
@@ -32,9 +38,9 @@ class LogInViewController: UIViewController {
         let image = UIImage(named: "logo_vk")
         let logoImageVK = UIImageView(image: image)
         logoImageVK.translatesAutoresizingMaskIntoConstraints = false
-         return logoImageVK
+        return logoImageVK
     }()
-
+    
     private lazy var loginTextField: UITextField = { [unowned self]
         in let loginTextField = UITextField()
         loginTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -53,7 +59,7 @@ class LogInViewController: UIViewController {
         loginTextField.autocorrectionType = .no
         loginTextField.keyboardType = .namePhonePad
         loginTextField.delegate = self
-         return loginTextField
+        return loginTextField
     }()
     
     private lazy var passwordTextField: UITextField = { [unowned self] in let passwordTextField = UITextField()
@@ -74,7 +80,7 @@ class LogInViewController: UIViewController {
         passwordTextField.keyboardType = .default
         passwordTextField.isSecureTextEntry = true
         passwordTextField.delegate = self
-          return passwordTextField
+        return passwordTextField
     }()
     
     private lazy var stackView: UIStackView = {
@@ -92,7 +98,7 @@ class LogInViewController: UIViewController {
         
         strackView.addArrangedSubview(loginTextField)
         strackView.addArrangedSubview(passwordTextField)
-         return strackView
+        return strackView
     }()
     
     private lazy var logInButton: CustomButton = {
@@ -105,20 +111,20 @@ class LogInViewController: UIViewController {
         logInButton.addTarget(self, action: #selector(tap), for: .touchUpInside)
         
         logInButton.translatesAutoresizingMaskIntoConstraints = false
-       
-         return logInButton
+        
+        return logInButton
     }()
     
     //MARK: Сycles
-
-
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupView()
         setupSubview()
         setupConstraints()
-       
+        
     }
     override func viewWillAppear(_ animated: Bool){
         super.viewWillAppear(animated)
@@ -147,29 +153,42 @@ class LogInViewController: UIViewController {
         scrollView.contentInset.bottom = 0.0
     }
     
-     
+    
     @objc private func tap() {
         
 #if DEBUG
-        let log = TestUserService().loginCheck(login: loginTextField.text!)
-        let pass = TestUserService().password
+        let user = TestUserService().testUser
 #else
-        let log = CurrentUserService().loginCheck(login: loginTextField.text!)
-        let pass = CurrentUserService().password
+
+        let user = CurrentUserService().currentUser
 #endif
         
-        if let loginUser = log {
-            if pass == passwordTextField.text! {
-                let proflaVC = ProfileViewController()
-                proflaVC.currenUser = loginUser
-                self.navigationController?.pushViewController(proflaVC, animated: true)
-            } else {
-                print ("The invalid password error.")
-            }
+        guard let accessed = loginDelegate?.check(inputedLogin: loginTextField.text!, inputedPass: passwordTextField.text!) else { return }
+        
+        if accessed {
+            let proflaVC = ProfileViewController()
+            proflaVC.currenUser = user
+            self.navigationController?.pushViewController(proflaVC, animated: true)
         } else {
-            print("The invalid login error.")
+            let alert = UIAlertController(title: "Authentication Error", message: "Wrong login or password.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .cancel))
+            self.present(alert, animated: true)
         }
     }
+
+
+//        if let loginUser = log {
+//            if pass == passwordTextField.text! {
+//                let proflaVC = ProfileViewController()
+//                proflaVC.currenUser = loginUser
+//                self.navigationController?.pushViewController(proflaVC, animated: true)
+//            } else {
+//                print ("The invalid password error.")
+//            }
+//        } else {
+//            print("The invalid login error.")
+//        }
+//    }
 
 
         
@@ -250,3 +269,14 @@ extension LogInViewController: UITextFieldDelegate {
         return true
     }
 }
+    protocol LoginViewControllerDelegate {
+        func check (inputedLogin: String, inputedPass: String) -> Bool
+    }
+    
+    struct LoginInspector: LoginViewControllerDelegate {
+        func check(inputedLogin: String, inputedPass: String) -> Bool {
+            return Checker.service.check(inputedLogin: inputedLogin, inputedPass: inputedPass)
+        }
+        
+    }
+
