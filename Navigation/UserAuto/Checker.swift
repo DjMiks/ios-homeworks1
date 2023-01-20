@@ -16,10 +16,11 @@ class Checker {
     private let password: String = "stand"
     
     func check (inputedLogin: String, inputedPass: String) -> Bool {
-        let login = login
-        let pass = password
+     //   можно без них
+        //   let login = login
+    //    let pass = password
         
-        return inputedLogin == login && inputedPass == pass ? true : false
+        return inputedLogin == login && inputedPass == password ? true : false
     }
     
 }
