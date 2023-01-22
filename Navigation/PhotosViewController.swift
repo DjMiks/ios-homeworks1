@@ -6,16 +6,25 @@
 //
 
 import UIKit
+import iOSIntPackage
 
 private enum CollectionCellReuseID: String {
     case base = "CollectionCellReuseID_ReuseID"
 }
 
-class PhotosViewController: UIViewController {
+ final class PhotosViewController: UIViewController, ImageLibrarySubscriber {
     
     // MARK: DATA
 
-    private lazy var  photoCollection: [AllPhotos] = AllPhotos.myPhotos()
+    fileprivate lazy var  photoCollection: [AllPhotos] = AllPhotos.myPhotos()
+     
+     let facade = ImagePublisherFacade()
+     
+     var imageFromPublisher: [UIImage] = []
+     
+     let photo: [UIImage] = [UIImage(named: "1")!, UIImage(named: "2")!, UIImage(named: "3")!, UIImage(named: "4")!, UIImage(named: "5")!, UIImage(named: "6")!, UIImage(named: "7")!, UIImage(named: "8")!, UIImage(named: "9")!, UIImage(named: "10")!,
+                             UIImage(named: "11")!,UIImage(named: "12")!,UIImage(named: "13")!,UIImage(named: "14")!,UIImage(named: "15")!]
+     
 
     // MARK: SubView
        
@@ -37,18 +46,20 @@ class PhotosViewController: UIViewController {
         setupView()
         setupSubview()
         setupConctraints()
+        facade.subscribe(self)
+        facade.addImagesWithTimer(time: 0.5, repeat: 15, userImages: photo)
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.isNavigationBarHidden = false
+        self.navigationController?.isNavigationBarHidden = true
+        facade.removeSubscription(for: self)
     }
     
     // MARK: Private
     
     private func setupView() {
-        
         view.backgroundColor = .systemBackground
         title = "Gallery"
     }
@@ -76,7 +87,7 @@ class PhotosViewController: UIViewController {
 extension PhotosViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        photoCollection.count
+        imageFromPublisher.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -84,8 +95,8 @@ extension PhotosViewController: UICollectionViewDataSource {
             fatalError("cloud not dequeueReusableCell")
         }
         
-        let photo = photoCollection[indexPath.row]
-        cell.setupMethod(with: photo)
+      //  let photo = photoCollection[indexPath.row]
+        cell.photoPreview.image = imageFromPublisher[indexPath.row]
          return cell
     }
 }
@@ -138,4 +149,11 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout{
     }
     
     
+}
+
+extension PhotosViewController {
+    func receive(images: [UIImage]) {
+        imageFromPublisher = images
+        collectiontView.reloadData()
+    }
 }
