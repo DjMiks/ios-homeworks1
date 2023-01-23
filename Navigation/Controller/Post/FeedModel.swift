@@ -13,8 +13,15 @@ class FeedModel {
     
     func check (word: String) -> Bool {
      
-        let input = word
-        
-        return secretWord == input ? true : false
+        secretWord == word ? true : false
     }
 }
+/*
+ было ране и упрослили 
+func check (word: String) -> Bool {
+    
+       let input = word
+       
+       return secretWord == input ? true : false
+   }
+*/
