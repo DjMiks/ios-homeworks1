@@ -101,8 +101,8 @@ class LogInViewController: UIViewController {
         return strackView
     }()
     
-    private lazy var logInButton: CustomButton = {
-        let logInButton = CustomButton(type: .system)
+    private lazy var logInButton: CustButton = {
+        let logInButton = CustButton(type: .system)
         logInButton.layer.cornerRadius = 10
         logInButton.setTitleColor(.white, for: .normal)
         logInButton.setTitle("Log In", for: .normal)
