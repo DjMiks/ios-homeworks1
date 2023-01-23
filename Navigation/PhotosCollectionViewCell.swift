@@ -9,13 +9,15 @@ import UIKit
 
 class PhotosCollectionViewCell: UICollectionViewCell {
     
+    //MARK: Subviews
     
-    private lazy var photoPreview: UIImageView = {
+    lazy var photoPreview: UIImageView = {
         let photoPreview = UIImageView(frame: .zero)
         photoPreview.translatesAutoresizingMaskIntoConstraints = false
-        photoPreview.contentMode = .scaleAspectFill
+        photoPreview.contentMode = .scaleToFill
          return photoPreview
     }()
+ // MARK: LifeCycle
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -27,6 +29,8 @@ class PhotosCollectionViewCell: UICollectionViewCell {
         setupSubview()
         setupConstraints()
     }
+    
+    // MARK: Private
     
     private func setupView() {
         contentView.clipsToBounds = true
