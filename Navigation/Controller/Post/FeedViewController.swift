@@ -10,11 +10,23 @@ import StorageService
 
 class FeedViewController: UIViewController {
     
+    let koordinator: FeedKoordinator
+    
+    init(koordinator: FeedKoordinator) {
+        self.koordinator = koordinator
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
      var post = Post(title: "You Post")
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemGreen
+        tabBarController?.tabBar.backgroundColor = .white
         view.addSubview(checkTextField)
         view.addSubview(checkGuessButton)
         view.addSubview(checkLabel)

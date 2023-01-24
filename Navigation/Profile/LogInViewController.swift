@@ -15,6 +15,18 @@ class LogInViewController: UIViewController {
     
     var loginDelegate: LoginViewControllerDelegate?
     
+    let koordinator: LoginKoordinator
+    
+    init(koordinator: LoginKoordinator) {
+        self.koordinator = koordinator
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
     // MARK: subview
     
     private lazy var scrollView: UIScrollView = {
