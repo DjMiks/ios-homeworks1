@@ -10,12 +10,10 @@ import StorageService
 
 class FeedViewController: UIViewController {
     
-    let coordinator: FeedCoordinator
+    let koordinator: FeedKoordinator
     
-    var output: FeedOutput?
-    
-    init(coordinator: FeedCoordinator) {
-        self.coordinator = coordinator
+    init(koordinator: FeedKoordinator) {
+        self.koordinator = koordinator
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -145,11 +143,4 @@ private lazy var button: UIButton = {
         }
     }
    
-}
-
-extension FeedViewController: FeedOutput {
-    
-    func showPost() {
-        output?.showPost()
-    }
 }

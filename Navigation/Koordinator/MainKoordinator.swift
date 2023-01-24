@@ -9,11 +9,11 @@ import Foundation
 import UIKit
 
 
-protocol MainCoordinator {
+protocol MainKoordinator {
     func startApplication() -> UIViewController
 }
 
-class MainCoordinatorImp: MainCoordinator {
+class MainKoordinatorImp: MainKoordinator {
     func startApplication() -> UIViewController {
         return TabBarController()
     }

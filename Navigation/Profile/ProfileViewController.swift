@@ -13,8 +13,6 @@ class ProfileViewController: UIViewController {
     
     var currenUser: User? = nil
     
-    var output: ProfileOutput?
-    
     private lazy var tableView: UITableView = {
         let tableView = UITableView.init (frame: .zero, style: .grouped)
         
@@ -154,11 +152,5 @@ extension ProfileViewController: UITableViewDataSource {
         cell.setup(with: data)
         
         return cell
-    }
-}
-
-extension ProfileViewController: ProfileOutput {
-    func showPhotos() {
-        output?.showPhotos()
     }
 }
