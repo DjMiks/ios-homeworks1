@@ -31,6 +31,11 @@
 		0A6C4FD1290055E400B11409 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6C4FD0290055E400B11409 /* User.swift */; };
 		0A6C4FD32900565500B11409 /* CurrentUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6C4FD22900565500B11409 /* CurrentUserService.swift */; };
 		0A6C4FD52900567A00B11409 /* TestUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6C4FD42900567A00B11409 /* TestUserService.swift */; };
+		0A7CAA4F298182F100637A7E /* Minor.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0A7CAA4C298182F000637A7E /* Minor.mp3 */; };
+		0A7CAA50298182F100637A7E /* Captain.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0A7CAA4D298182F100637A7E /* Captain.mp3 */; };
+		0A7CAA51298182F100637A7E /* Polovina_moya.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0A7CAA4E298182F100637A7E /* Polovina_moya.mp3 */; };
+		0A7CAA592981AADF00637A7E /* Marlboro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0A7CAA582981AADF00637A7E /* Marlboro.mp3 */; };
+		0A7CAA5D2981AB9E00637A7E /* Samurajj.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0A7CAA5C2981AB9E00637A7E /* Samurajj.mp3 */; };
 		0A96D27428F07C5A00A1025C /* StorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A96D27328F07C5A00A1025C /* StorageService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0A96D27728F07C5A00A1025C /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A96D27128F07C5A00A1025C /* StorageService.framework */; };
 		0A96D27828F07C5A00A1025C /* StorageService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A96D27128F07C5A00A1025C /* StorageService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -96,6 +101,11 @@
 		0A6C4FD0290055E400B11409 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0A6C4FD22900565500B11409 /* CurrentUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserService.swift; sourceTree = "<group>"; };
 		0A6C4FD42900567A00B11409 /* TestUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUserService.swift; sourceTree = "<group>"; };
+		0A7CAA4C298182F000637A7E /* Minor.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Minor.mp3; sourceTree = "<group>"; };
+		0A7CAA4D298182F100637A7E /* Captain.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Captain.mp3; sourceTree = "<group>"; };
+		0A7CAA4E298182F100637A7E /* Polovina_moya.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Polovina_moya.mp3; sourceTree = "<group>"; };
+		0A7CAA582981AADF00637A7E /* Marlboro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Marlboro.mp3; sourceTree = "<group>"; };
+		0A7CAA5C2981AB9E00637A7E /* Samurajj.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Samurajj.mp3; sourceTree = "<group>"; };
 		0A96D27128F07C5A00A1025C /* StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A96D27328F07C5A00A1025C /* StorageService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StorageService.h; sourceTree = "<group>"; };
 		0A9B500328A83D23001CF929 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
@@ -136,7 +146,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0A04AB5E297FC6F40003877D /* Koordinator */ = {
+		0A04AB5E297FC6F40003877D /* Сoordinator */ = {
 			isa = PBXGroup;
 			children = (
 				0A04AB5F297FC7200003877D /* MainCoordinator.swift */,
@@ -145,7 +155,7 @@
 				0A04AB65297FC74C0003877D /* TabBarCoordinator.swift */,
 				0A04AB67297FC7670003877D /* Factory.swift */,
 			);
-			path = Koordinator;
+			path = "Сoordinator";
 			sourceTree = "<group>";
 		};
 		0A512102297D46D2005565A0 /* Post */ = {
@@ -194,7 +204,7 @@
 		0A65DD2F2862634200B03691 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				0A04AB5E297FC6F40003877D /* Koordinator */,
+				0A04AB5E297FC6F40003877D /* Сoordinator */,
 				0A65DD322862634200B03691 /* SceneDelegate.swift */,
 				0A65DD302862634200B03691 /* AppDelegate.swift */,
 				0A6C4FCF2900558700B11409 /* UserAuto */,
@@ -202,6 +212,7 @@
 				0A65DD392862634300B03691 /* Assets.xcassets */,
 				0A65DD3B2862634300B03691 /* LaunchScreen.storyboard */,
 				0A65DD3E2862634300B03691 /* Info.plist */,
+				0A7CAA3F298175F600637A7E /* Audio */,
 				0A96D27D28F07E7300A1025C /* Controller */,
 				0A512104297D4715005565A0 /* Photo */,
 			);
@@ -218,6 +229,18 @@
 				0A5120FA29793F1A005565A0 /* Checker.swift */,
 			);
 			path = UserAuto;
+			sourceTree = "<group>";
+		};
+		0A7CAA3F298175F600637A7E /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				0A7CAA582981AADF00637A7E /* Marlboro.mp3 */,
+				0A7CAA4D298182F100637A7E /* Captain.mp3 */,
+				0A7CAA4C298182F000637A7E /* Minor.mp3 */,
+				0A7CAA4E298182F100637A7E /* Polovina_moya.mp3 */,
+				0A7CAA5C2981AB9E00637A7E /* Samurajj.mp3 */,
+			);
+			path = Audio;
 			sourceTree = "<group>";
 		};
 		0A96D27228F07C5A00A1025C /* StorageService */ = {
@@ -373,8 +396,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A7CAA51298182F100637A7E /* Polovina_moya.mp3 in Resources */,
+				0A7CAA592981AADF00637A7E /* Marlboro.mp3 in Resources */,
 				0A65DD3D2862634300B03691 /* LaunchScreen.storyboard in Resources */,
 				0A65DD3A2862634300B03691 /* Assets.xcassets in Resources */,
+				0A7CAA5D2981AB9E00637A7E /* Samurajj.mp3 in Resources */,
+				0A7CAA50298182F100637A7E /* Captain.mp3 in Resources */,
+				0A7CAA4F298182F100637A7E /* Minor.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -647,6 +675,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -670,6 +699,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Navigation/NavigationRelease.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = VUB6J5C765;
@@ -679,6 +709,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
