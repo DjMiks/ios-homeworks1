@@ -9,7 +9,15 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
+    var output: FeedOutput?
+    
     fileprivate lazy var data = PostTape.make()
+
+    var viewModel: ProfileVIewModel! {
+        didSet {
+            self.data = viewModel.model ?? []
+        }
+    }
     
     var currenUser: User? = nil
     
@@ -40,9 +48,9 @@ class ProfileViewController: UIViewController {
         setupConstraints()
         tuneTableView()
     }
-    override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.navigationBar.isHidden = true
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        self.navigationController?.navigationBar.isHidden = true
+//    }
     
     // MARK: METOD
     
@@ -88,6 +96,38 @@ class ProfileViewController: UIViewController {
 
 // MARK: extension
 
+extension ProfileViewController: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        2
+    }
+    func tableView(_ tableView: UITableView,numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return 1
+        } else {
+            return data.count
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.section == 0 {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: CellReuseID.photos.rawValue, for: indexPath) as? PhotosTableViewCell else {
+            fatalError("could not dequeueReusableCell")
+        }
+            return cell
+        }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: CellReuseID.base.rawValue, for:indexPath)
+                as? PostTableViewCell else {
+            fatalError("cloud not dequeueReusableCell")
+        }
+        
+        let data = data[indexPath.row]
+        cell.setup(with: data)
+        
+        return cell
+    }
+}
+
 extension ProfileViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -120,37 +160,5 @@ extension ProfileViewController: UITableViewDelegate {
             navigationController?.navigationBar.isHidden = false
             navigationController?.pushViewController(nextViewController, animated: true)
         }
-    }
-}
-
-extension ProfileViewController: UITableViewDataSource {
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        2
-    }
-    func tableView(_ tableView: UITableView,numberOfRowsInSection section: Int) -> Int {
-        if section == 0 {
-            return 1
-        } else {
-            return data.count
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0 {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: CellReuseID.photos.rawValue, for: indexPath) as? PhotosTableViewCell else {
-            fatalError("could not dequeueReusableCell")
-        }
-            return cell
-        }
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: CellReuseID.base.rawValue, for:indexPath)
-                as? PostTableViewCell else {
-            fatalError("cloud not dequeueReusableCell")
-        }
-        
-        let data = data[indexPath.row]
-        cell.setup(with: data)
-        
-        return cell
     }
 }

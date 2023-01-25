@@ -10,34 +10,14 @@ import StorageService
 
 class FeedViewController: UIViewController {
     
-    let coordinator: FeedCoordinator
+    var output: FeedOutput?
     
-    init(coordinator: FeedCoordinator) {
-        self.coordinator = coordinator
-        super.init(nibName: nil, bundle: nil)
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    private enum CustomError: Error {
+        case emptyTextField
+        case wrongPassword
     }
     
-     var post = Post(title: "You Post")
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .systemGreen
-        tabBarController?.tabBar.backgroundColor = .white
-        view.addSubview(checkTextField)
-        view.addSubview(checkGuessButton)
-        view.addSubview(checkLabel)
-        checkGuessButton.layer.cornerRadius = 15
-        checkGuessButton.layer.borderWidth = 1
-        checkGuessButton.layer.borderColor = UIColor.black.cgColor
-        setupConstraint()
-        setupButton()
-        checkGuessButton.setup()
-    }
-    
+     
     private lazy var checkTextField: UITextField = {
         let field = UITextField()
         field.translatesAutoresizingMaskIntoConstraints = false
@@ -78,6 +58,23 @@ private lazy var button: UIButton = {
          return button
 }()
     
+    var post = Post(title: "You Post")
+   
+   override func viewDidLoad() {
+       super.viewDidLoad()
+       view.backgroundColor = .systemGreen
+       tabBarController?.tabBar.backgroundColor = .white
+       view.addSubview(checkTextField)
+       view.addSubview(checkGuessButton)
+       view.addSubview(checkLabel)
+       checkGuessButton.layer.cornerRadius = 15
+       checkGuessButton.layer.borderWidth = 1
+       checkGuessButton.layer.borderColor = UIColor.black.cgColor
+       setupConstraint()
+       setupButton()
+       checkGuessButton.setup()
+   }
+    
     private func setupConstraint() {
         let safeArea = view.safeAreaLayoutGuide
         
@@ -117,6 +114,10 @@ private lazy var button: UIButton = {
         postViewController.titlePost = post.title
         self.navigationController?.pushViewController(postViewController, animated: true)
     }
+    
+    @objc private func tap() {
+        output?.showPost()
+    }
 
     @objc private func check() {
         let check = FeedModel()
@@ -143,4 +144,11 @@ private lazy var button: UIButton = {
         }
     }
    
+}
+
+extension FeedViewController: FeedOutput {
+    
+    func showPost() {
+        output?.showPost()
+    }
 }

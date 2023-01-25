@@ -10,20 +10,30 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
+    var rootCoordinator: AppCoordinator?
     
     func scene(
         _ scene: UIScene,
         willConnectTo session: UISceneSession,
         options connectionOptions: UIScene.ConnectionOptions
     ) {
-        guard let windowScene = (scene as? UIWindowScene) else { return }
-        let window = UIWindow(windowScene: windowScene)
-        let mainCoordinator: MainCoordinator = MainCoordinatorImp()
+        guard let scene = (scene as? UIWindowScene) else { return }
+        let window = UIWindow(windowScene: scene)
+        
+        let mainCoordinator = UITabBarController()
+        window.rootViewController = mainCoordinator
         self.window = window
-        window.rootViewController = mainCoordinator.startApplication()
+        
+        let coordinator = RootCoordinator(transitionHandler: mainCoordinator)
+        self.rootCoordinator = coordinator
+        
         window.makeKeyAndVisible()
+        coordinator.start()
     }
+
 }
+
+
     
     
     /*
