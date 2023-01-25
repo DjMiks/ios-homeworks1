@@ -10,10 +10,10 @@ import StorageService
 
 class FeedViewController: UIViewController {
     
-    let koordinator: FeedKoordinator
+    let coordinator: FeedCoordinator
     
-    init(koordinator: FeedKoordinator) {
-        self.koordinator = koordinator
+    init(coordinator: FeedCoordinator) {
+        self.coordinator = coordinator
         super.init(nibName: nil, bundle: nil)
     }
 

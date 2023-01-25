@@ -7,23 +7,21 @@
 
 import UIKit
 import iOSIntPackage
+import Foundation
 
-private enum CollectionCellReuseID: String {
-    case base = "CollectionCellReuseID_ReuseID"
-}
-
- final class PhotosViewController: UIViewController, ImageLibrarySubscriber {
+ final class PhotosViewController: UIViewController {
+     
     
     // MARK: DATA
 
-    fileprivate lazy var  photoCollection: [AllPhotos] = AllPhotos.myPhotos()
+     let imageProcessor = ImageProcessor()
      
-     let facade = ImagePublisherFacade()
+     private lazy var photoCollection: [UIImage] = []
      
-     var imageFromPublisher: [UIImage] = []
+     private lazy var photoCollectionProcessed: [UIImage] = []
      
-     let photo: [UIImage] = [UIImage(named: "1")!, UIImage(named: "2")!, UIImage(named: "3")!, UIImage(named: "4")!, UIImage(named: "5")!, UIImage(named: "6")!, UIImage(named: "7")!, UIImage(named: "8")!, UIImage(named: "9")!, UIImage(named: "10")!, UIImage(named: "11")!,UIImage(named: "12")!,UIImage(named: "13")!,            UIImage(named: "14")!,UIImage(named: "15")!]
      
+         
 
     // MARK: SubView
        
@@ -37,7 +35,34 @@ private enum CollectionCellReuseID: String {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
          return collectionView
     }()
-    
+     
+     private enum CollectionCellReuseID: String {
+         case base = "CollectionCellReuseID_ReuseID"
+     }
+     
+     // MARK: private methods
+     
+     private func  measure() {
+         photoCollection = AllPhotos.photoImage
+         let group = DispatchGroup()
+         group.enter()
+         let start = CFAbsoluteTimeGetCurrent()
+         imageProcessor.processImagesOnThread(sourceImages: photoCollection, filter: .noir, qos: .default) { [self] comletion in for photoFromCollection in comletion {
+             if let  photo = photoFromCollection {
+                 photoCollectionProcessed.append(UIImage(cgImage: photo))
+             }
+         }
+             let diff = CFAbsoluteTimeGetCurrent() - start
+             print("Processing has taken \(diff) second")
+             group.leave()
+         }
+         group.notify(queue: .main) {[self] in
+             photoCollection = photoCollectionProcessed
+             collectiontView.reloadData()
+         }
+         
+     }
+         
     // MARK: CYCLE
     
     override func viewDidLoad() {
@@ -45,17 +70,13 @@ private enum CollectionCellReuseID: String {
         setupView()
         setupSubview()
         setupConctraints()
-        facade.subscribe(self)
-        facade.addImagesWithTimer(time: 0.5, repeat: 15, userImages: photo)
+        measure()
+     //   facade.subscribe(self)
+    //    facade.addImagesWithTimer(time: 0.5, repeat: 15, userImages: photo)
         
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationController?.isNavigationBarHidden = true
-        facade.removeSubscription(for: self)
-    }
-    
+   
     // MARK: Private
     
     private func setupView() {
@@ -86,7 +107,7 @@ private enum CollectionCellReuseID: String {
 extension PhotosViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        imageFromPublisher.count
+        photoCollection.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -94,8 +115,8 @@ extension PhotosViewController: UICollectionViewDataSource {
             fatalError("cloud not dequeueReusableCell")
         }
         
-      //  let photo = photoCollection[indexPath.row]
-        cell.photoPreview.image = imageFromPublisher[indexPath.row]
+        let photo = photoCollection[indexPath.row]
+        cell.setupMethod(with: photo)
          return cell
     }
 }
@@ -150,9 +171,5 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout{
     
 }
 
-extension PhotosViewController {
-    func receive(images: [UIImage]) {
-        imageFromPublisher = images
-        collectiontView.reloadData()
-    }
-}
+
+

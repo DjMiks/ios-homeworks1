@@ -50,8 +50,8 @@ class PhotosCollectionViewCell: UICollectionViewCell {
         ])
     }
     
-    func setupMethod(with photo: AllPhotos){
-        photoPreview.image = UIImage(named: photo.photoImage)
+    func setupMethod(with photo: UIImage){
+        photoPreview.image = photo
     }
     
     

@@ -26,14 +26,14 @@ class Factory {
     func startModule() {
         switch viewController {
         case .feed:
-            let feedKoordinator = FeedKoordinator(navigationController: navigationController)
-            let controller = FeedViewController(koordinator: feedKoordinator)
+            let feedCoordinator = FeedCoordinator(navigationController: navigationController)
+            let controller = FeedViewController(coordinator: feedCoordinator)
             navigationController.tabBarItem = .init(title: "FeeD", image: UIImage(systemName: "doc.text"), tag: 0)
             navigationController.setViewControllers([controller], animated: true)
             
         case .login:
-            let loginKoordinator = LoginKoordinator(navigationController: navigationController)
-            let controller = LogInViewController(koordinator: loginKoordinator)
+            let loginCoordinator = LoginCoordinator(navigationController: navigationController)
+            let controller = LogInViewController(coordinator: loginCoordinator)
             controller.loginDelegate = MyLoginFactory().makeLoginInspector()
             navigationController.tabBarItem = .init(title: "Log In", image: UIImage(systemName: "person.crop.circle"), tag: 1)
             navigationController.setViewControllers([controller], animated: true)

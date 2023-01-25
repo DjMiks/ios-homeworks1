@@ -1,13 +1,14 @@
 //
-//  LoginKoordinator.swift
+//  FeedKoordinator.swift
 //  Navigation
 //
 //  Created by Максим Ялынычев on 23.01.2023.
 //
+
 import Foundation
 import UIKit
 
-class LoginKoordinator {
+class FeedCoordinator {
 
     let navigationController: UINavigationController
 
@@ -16,8 +17,8 @@ class LoginKoordinator {
     }
 
     func startView() {
-        let loginKoordinator = LoginKoordinator(navigationController: navigationController)
-        let loginViewController = LogInViewController(koordinator: loginKoordinator)
-        navigationController.pushViewController(loginViewController, animated: true)
+        let feedCoordinator = FeedCoordinator(navigationController: navigationController)
+        let feedViewController = FeedViewController(coordinator: feedCoordinator)
+        navigationController.pushViewController(feedViewController, animated: true)
     }
 }

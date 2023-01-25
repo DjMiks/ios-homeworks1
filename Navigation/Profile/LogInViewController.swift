@@ -15,10 +15,10 @@ class LogInViewController: UIViewController {
     
     var loginDelegate: LoginViewControllerDelegate?
     
-    let koordinator: LoginKoordinator
+    let coordinator: LoginCoordinator
     
-    init(koordinator: LoginKoordinator) {
-        self.koordinator = koordinator
+    init(coordinator: LoginCoordinator) {
+        self.coordinator = coordinator
         super.init(nibName: nil, bundle: nil)
     }
 
