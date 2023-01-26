@@ -7,7 +7,7 @@
 
 import UIKit
 
-  protocol UserService {
+public  protocol UserService {
     
      func loginCheck(login: String) -> User?
 }

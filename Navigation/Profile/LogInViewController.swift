@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 
 
@@ -15,7 +16,130 @@ class LogInViewController: UIViewController {
     
     var loginDelegate: LoginViewControllerDelegate?
     
+    
+    //MARK: media
+    
+    private let engine = AVAudioEngine()
+    private let player = AVAudioPlayerNode()
+    
+    private var currentFile: AVAudioFile!
+    
+    private let URLarray: [URL?] = [        
+        Bundle.main.url(forResource: "Captain", withExtension: ".mp3"),
+        Bundle.main.url(forResource: "Malboro", withExtension: ".mp3"),
+        Bundle.main.url(forResource: "Minor", withExtension: ".mp3"),
+        Bundle.main.url(forResource: "Polovina_moya", withExtension: ".mp3"),
+        Bundle.main.url(forResource: "Samurajj", withExtension: ".mp3")]
+    
+    private let songNamesArray: [String] = ["Malboro","Captain","Minor","Polovina_moya","Samurajj"]
+    
+    private var currentIndex = 0
+    
+    private func setupAudio() {
+        guard let fileURL = URLarray[0]
+        else { return }
+        do {
+            
+            let file = try AVAudioFile(forReading: fileURL)
+            let format = file.processingFormat
+            
+            currentFile = file
+            
+            configureEngine(with: format)
+        } catch {
+            print("Error reading the audio file: \(error.localizedDescription)")
+        }
+    }
+    
+    private func configureEngine(with format: AVAudioFormat) {
+        engine.attach(player)
+        
+        engine.connect(
+            player,
+            to: engine.mainMixerNode,
+            format: format)
+        
+        engine.prepare()
+        
+        do {
+            try engine.start()
+            
+            guard
+                let file = currentFile
+            else {  return  }
+            
+            player.scheduleFile(file, at: nil) {
+            }
+        } catch {
+            print("Error starting the player: \(error.localizedDescription)")
+        }
+    }
+    
+    
+    
     // MARK: subview
+    
+    private lazy var playPauseButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "playpause.fill"), for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(play), for: .touchUpInside)
+        return button
+    }()
+    
+    private lazy var currenSongLabel: UILabel = {
+        let label = UILabel()
+        label.backgroundColor = contentView.backgroundColor
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .systemTeal
+        label.text = ""
+        return label
+    }()
+         
+    private lazy var stopButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "stop.fill"), for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(stop), for: .touchUpInside)
+        return button
+    }()
+    
+    private lazy var playBackButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "backward.fill"), for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(tapPlayBack), for: .touchUpInside)
+        return button
+    }()
+    
+    private lazy var playForwardButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "forward.fill"), for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(tapPlayForward), for: .touchUpInside)
+        return button
+    }()
+    
+    private lazy var playerStackView: UIStackView = {
+        
+        let stackView = UIStackView()
+        stackView.layer.cornerRadius = 10
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.clipsToBounds = true
+        
+        stackView.axis = .horizontal
+        stackView.distribution = .fillEqually
+        stackView.alignment = .fill
+        
+        stackView.addArrangedSubview(playBackButton)
+        stackView.addArrangedSubview(playPauseButton)        
+        stackView.addArrangedSubview(playForwardButton)
+        stackView.addArrangedSubview(stopButton)
+        
+        
+        return stackView
+    }()
+    
     
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -34,10 +158,22 @@ class LogInViewController: UIViewController {
         
     }()
     
+    private lazy var contentView2: UIView = {
+        let contentView = UIView()
+        
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.backgroundColor = .white
+        
+        return contentView
+    }()
+    
     private lazy var logoImageVK: UIImageView = {
         let image = UIImage(named: "logo_vk")
         let logoImageVK = UIImageView(image: image)
         logoImageVK.translatesAutoresizingMaskIntoConstraints = false
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(changeLogoTimer))
+        logoImageVK.addGestureRecognizer(gesture)
+        logoImageVK.isUserInteractionEnabled = true
         return logoImageVK
     }()
     
@@ -62,7 +198,8 @@ class LogInViewController: UIViewController {
         return loginTextField
     }()
     
-    private lazy var passwordTextField: UITextField = { [unowned self] in let passwordTextField = UITextField()
+    private lazy var passwordTextField: UITextField = { [unowned self] in
+        let passwordTextField = UITextField()
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
         passwordTextField.placeholder = "Password"
         passwordTextField.leftView = UIView(frame: CGRect(x:0, y:0, width:15, height: passwordTextField.frame.height))
@@ -103,14 +240,17 @@ class LogInViewController: UIViewController {
     
     private lazy var logInButton: CustButton = {
         let logInButton = CustButton(type: .system)
+        logInButton.translatesAutoresizingMaskIntoConstraints = false
         logInButton.layer.cornerRadius = 10
         logInButton.setTitleColor(.white, for: .normal)
         logInButton.setTitle("Log In", for: .normal)
         logInButton.backgroundColor = UIColor(named: "ColorLog")
         
+        
         logInButton.addTarget(self, action: #selector(tap), for: .touchUpInside)
         
-        logInButton.translatesAutoresizingMaskIntoConstraints = false
+        logInButton.isUserInteractionEnabled = true
+        
         
         return logInButton
     }()
@@ -122,8 +262,21 @@ class LogInViewController: UIViewController {
         super.viewDidLoad()
         
         setupView()
+        contentView.addSubview(playerStackView)
+        contentView.addSubview(currenSongLabel)
+        
         setupSubview()
+        NSLayoutConstraint.activate([
+            currenSongLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            currenSongLabel.topAnchor.constraint(equalTo:logoImageVK.bottomAnchor, constant: 200),
+            
+            playerStackView.bottomAnchor.constraint(equalTo: stackView.topAnchor, constant: -30),
+            playerStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            playerStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -30),
+            
+        ])
         setupConstraints()
+        setupAudio()
         
     }
     override func viewWillAppear(_ animated: Bool){
@@ -142,6 +295,91 @@ class LogInViewController: UIViewController {
         removeKeyboardObservers()
     }
     
+    
+    // MARK: - Actions
+    
+    @objc func play() {
+        if player.isPlaying {
+            player.pause()
+            DispatchQueue.main.async {
+                self.currenSongLabel.text = ""
+            }
+        } else {
+            player.play()
+            DispatchQueue.main.async {
+                self.currenSongLabel.text = "You are song - \(self.songNamesArray[self.currentIndex])"
+            }
+        }
+    }
+    
+    @objc func stop() {
+        player.stop()
+        DispatchQueue.main.async {
+            self.currenSongLabel.text = ""
+        }
+        player.scheduleFile(currentFile!, at: nil)
+    }
+    
+    @objc func tapPlayBack() {
+        player.stop()
+        
+        if currentIndex != 0 {
+            currentIndex = currentIndex - 1
+            
+            guard let fileURL = URLarray[currentIndex] else {
+                return
+            }
+            
+            do {
+                let file = try AVAudioFile(forReading: fileURL)
+                let format = file.processingFormat
+                
+                currentFile = file
+                
+                DispatchQueue.main.async {
+                    self.currenSongLabel.text = "You are song - \(self.songNamesArray[self.currentIndex])"
+                }
+                
+                configureEngine(with: format)
+            } catch {
+                print("Error reading the audio file: \(error.localizedDescription)")
+            }
+            player.play()
+        }
+    }
+    
+    @objc func tapPlayForward() {
+        
+        player.stop()
+        
+        if currentIndex + 1 < URLarray.count {
+            currentIndex = currentIndex + 1
+            
+            guard let fileURL = URLarray[currentIndex] else {
+                return
+            }
+            
+            do {
+                let file = try AVAudioFile(forReading: fileURL)
+                let format = file.processingFormat
+                
+                currentFile = file
+                
+                DispatchQueue.main.async {
+                    self.currenSongLabel.text = "You are song - \(self.songNamesArray[self.currentIndex])"
+                }
+                
+                configureEngine(with: format)
+                
+            } catch {
+                print("Error reading the audio file: \(error.localizedDescription)")
+            }
+            
+            player.play()
+            
+        }
+    }
+    
     //MARK: Objc methods
     
     @objc func willShowKeyBoard(_ notification: NSNotification) {
@@ -154,47 +392,15 @@ class LogInViewController: UIViewController {
     }
     
     
-    @objc private func tap() {
-        
-#if DEBUG
-        let user = TestUserService().testUser
-#else
-
-        let user = CurrentUserService().currentUser
-#endif
-        
-        guard let accessed = loginDelegate?.check(inputedLogin: loginTextField.text!, inputedPass: passwordTextField.text!) else { return }
-        
-        if accessed {
-            let proflaVC = ProfileViewController()
-            proflaVC.currenUser = user
-            self.navigationController?.pushViewController(proflaVC, animated: true)
-        } else {
-            let alert = UIAlertController(title: "Authentication Error", message: "Wrong login or password.", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .cancel))
-            self.present(alert, animated: true)
-        }
+    //MARK: Private metod
+    
+    @objc private func changeLogoTimer() {
+        print ("Vk_logo")
     }
-
-
-//        if let loginUser = log {
-//            if pass == passwordTextField.text! {
-//                let proflaVC = ProfileViewController()
-//                proflaVC.currenUser = loginUser
-//                self.navigationController?.pushViewController(proflaVC, animated: true)
-//            } else {
-//                print ("The invalid password error.")
-//            }
-//        } else {
-//            print("The invalid login error.")
-//        }
-//    }
-
-
-        
-//MARK: Private metod
+    
     private func setupView() {
         self.view.backgroundColor = .white
+        self.navigationController?.navigationBar.isHidden = true
     }
     
     private func setupSubview() {
@@ -221,12 +427,12 @@ class LogInViewController: UIViewController {
             contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             
-            logoImageVK.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 120),
+            logoImageVK.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 200),
             logoImageVK.heightAnchor.constraint(equalToConstant: 100),
             logoImageVK.widthAnchor.constraint(equalToConstant: 100),
             logoImageVK.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             
-            stackView.topAnchor.constraint(equalTo: logoImageVK.bottomAnchor, constant: 120),
+            stackView.topAnchor.constraint(equalTo: logoImageVK.bottomAnchor, constant: 220),
             stackView.heightAnchor.constraint(equalToConstant: 100),
             stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
@@ -235,6 +441,7 @@ class LogInViewController: UIViewController {
             logInButton.heightAnchor.constraint(equalToConstant: 50),
             logInButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             logInButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            
         ])
         contentView.subviews.last?.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
     }
@@ -256,6 +463,30 @@ class LogInViewController: UIViewController {
     private func removeKeyboardObservers() {
         let notificationCenter = NotificationCenter.default
         notificationCenter.removeObserver(self)
+    }
+    
+    
+    
+    @objc private func tap() {
+        
+#if DEBUG
+        let user = TestUserService().testUser
+#else
+        
+        let user = CurrentUserService().currentUser
+#endif
+        
+        guard let accessed = loginDelegate?.check(inputedLogin: loginTextField.text!, inputedPass: passwordTextField.text!) else { return }
+        
+        if accessed {
+            let proflaVC = ProfileViewController()
+            proflaVC.currenUser = user
+            self.navigationController?.pushViewController(proflaVC, animated: true)
+        } else {
+            let alert = UIAlertController(title: "Authentication Error", message: "Wrong login or password.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .cancel))
+            self.present(alert, animated: true)
+        }
     }
     
 }

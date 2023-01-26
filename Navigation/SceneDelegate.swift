@@ -10,6 +10,34 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
+    var rootCoordinator: AppCoordinator?
+    
+    func scene(
+        _ scene: UIScene,
+        willConnectTo session: UISceneSession,
+        options connectionOptions: UIScene.ConnectionOptions
+    ) {
+        guard let scene = (scene as? UIWindowScene) else { return }
+        let window = UIWindow(windowScene: scene)
+        
+        let mainCoordinator = UITabBarController()
+        window.rootViewController = mainCoordinator
+        self.window = window
+        
+        let coordinator = RootCoordinator(transitionHandler: mainCoordinator)
+        self.rootCoordinator = coordinator
+        
+        window.makeKeyAndVisible()
+        coordinator.start()
+    }
+
+}
+
+
+    
+    
+    /*
+    Ранее было использованно v 1
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
@@ -44,8 +72,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.makeKeyAndVisible()
         
     }
-}
-    /* Enum
+} */
+    
+    
+    /*
+     Ранее было использованно v 0
+     Enum
     private enum TabItemType {
         case feed
         case profile

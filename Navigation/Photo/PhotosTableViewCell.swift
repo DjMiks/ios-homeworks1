@@ -1,4 +1,3 @@
-//
 //  PhotosTableViewCell.swift
 //  Navigation
 //
@@ -141,3 +140,4 @@ class PhotosTableViewCell: UITableViewCell {
         
     }
 }
+
