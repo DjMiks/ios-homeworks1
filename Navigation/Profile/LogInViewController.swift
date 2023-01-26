@@ -22,24 +22,24 @@ class LogInViewController: UIViewController {
     private let engine = AVAudioEngine()
     private let player = AVAudioPlayerNode()
     
-    private var currentFile: AVAudioFile?
+    private var currentFile: AVAudioFile!
     
-    private let URLarray: [URL?] = [
-        Bundle.main.url(forResource: "Malboro", withExtension: "mp3"),
-        Bundle.main.url(forResource: "Captain", withExtension: "mp3"),
-        Bundle.main.url(forResource: "Minor", withExtension: "mp3"),
-        Bundle.main.url(forResource: "Polovina_moya", withExtension: "mp3"),
-        Bundle.main.url(forResource: "Samurajj", withExtension: "mp3")]
+    private let URLarray: [URL?] = [        
+        Bundle.main.url(forResource: "Captain", withExtension: ".mp3"),
+        Bundle.main.url(forResource: "Malboro", withExtension: ".mp3"),
+        Bundle.main.url(forResource: "Minor", withExtension: ".mp3"),
+        Bundle.main.url(forResource: "Polovina_moya", withExtension: ".mp3"),
+        Bundle.main.url(forResource: "Samurajj", withExtension: ".mp3")]
     
     private let songNamesArray: [String] = ["Malboro","Captain","Minor","Polovina_moya","Samurajj"]
     
     private var currentIndex = 0
     
     private func setupAudio() {
-        guard let fileURL = URLarray[0] else {
-            return
-        }
+        guard let fileURL = URLarray[0]
+        else { return }
         do {
+            
             let file = try AVAudioFile(forReading: fileURL)
             let format = file.processingFormat
             
@@ -66,9 +66,8 @@ class LogInViewController: UIViewController {
             
             guard
                 let file = currentFile
-            else {
-                return
-            }
+            else {  return  }
+            
             player.scheduleFile(file, at: nil) {
             }
         } catch {
@@ -80,15 +79,6 @@ class LogInViewController: UIViewController {
     
     // MARK: subview
     
-    private lazy var currenSongLabel: UILabel = {
-        let label = UILabel()
-        label.backgroundColor = contentView.backgroundColor
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .systemBlue
-        label.text = ""
-        return label
-    }()
-    
     private lazy var playPauseButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "playpause.fill"), for: .normal)
@@ -97,6 +87,15 @@ class LogInViewController: UIViewController {
         return button
     }()
     
+    private lazy var currenSongLabel: UILabel = {
+        let label = UILabel()
+        label.backgroundColor = contentView.backgroundColor
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = .systemTeal
+        label.text = ""
+        return label
+    }()
+         
     private lazy var stopButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "stop.fill"), for: .normal)
@@ -132,8 +131,8 @@ class LogInViewController: UIViewController {
         stackView.distribution = .fillEqually
         stackView.alignment = .fill
         
-        stackView.addArrangedSubview(playPauseButton)
         stackView.addArrangedSubview(playBackButton)
+        stackView.addArrangedSubview(playPauseButton)        
         stackView.addArrangedSubview(playForwardButton)
         stackView.addArrangedSubview(stopButton)
         

@@ -36,9 +36,9 @@
 		0A7CAA5F2981BD6000637A7E /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7CAA5E2981BD6000637A7E /* AppCoordinator.swift */; };
 		0A7CAA612981BE0E00637A7E /* FeedOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7CAA602981BE0E00637A7E /* FeedOutput.swift */; };
 		0A7CAA642981BE6A00637A7E /* FeedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7CAA632981BE6A00637A7E /* FeedCoordinator.swift */; };
-		0A7CAA662981C11F00637A7E /* ProfileOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7CAA652981C11F00637A7E /* ProfileOutput.swift */; };
 		0A7CAA682981C13A00637A7E /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7CAA672981C13A00637A7E /* ProfileCoordinator.swift */; };
 		0A7CAA6A2981C3F600637A7E /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7CAA692981C3F600637A7E /* ProfileViewModel.swift */; };
+		0A7CAA6C2982503100637A7E /* ProfileOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7CAA6B2982503100637A7E /* ProfileOutput.swift */; };
 		0A96D27428F07C5A00A1025C /* StorageService.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A96D27328F07C5A00A1025C /* StorageService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0A96D27728F07C5A00A1025C /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A96D27128F07C5A00A1025C /* StorageService.framework */; };
 		0A96D27828F07C5A00A1025C /* StorageService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A96D27128F07C5A00A1025C /* StorageService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -109,9 +109,9 @@
 		0A7CAA5E2981BD6000637A7E /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		0A7CAA602981BE0E00637A7E /* FeedOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedOutput.swift; sourceTree = "<group>"; };
 		0A7CAA632981BE6A00637A7E /* FeedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCoordinator.swift; sourceTree = "<group>"; };
-		0A7CAA652981C11F00637A7E /* ProfileOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProfileOutput.swift; path = ../../../../../../../../Downloads/ProfileOutput.swift; sourceTree = "<group>"; };
 		0A7CAA672981C13A00637A7E /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
 		0A7CAA692981C3F600637A7E /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		0A7CAA6B2982503100637A7E /* ProfileOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileOutput.swift; sourceTree = "<group>"; };
 		0A96D27128F07C5A00A1025C /* StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A96D27328F07C5A00A1025C /* StorageService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StorageService.h; sourceTree = "<group>"; };
 		0A9B500328A83D23001CF929 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
@@ -218,7 +218,6 @@
 				0A65DD392862634300B03691 /* Assets.xcassets */,
 				0A65DD3B2862634300B03691 /* LaunchScreen.storyboard */,
 				0A65DD3E2862634300B03691 /* Info.plist */,
-				0A7CAA3F298175F600637A7E /* Audio */,
 				0A96D27D28F07E7300A1025C /* Controller */,
 				0A512104297D4715005565A0 /* Photo */,
 			);
@@ -240,11 +239,11 @@
 		0A7CAA3F298175F600637A7E /* Audio */ = {
 			isa = PBXGroup;
 			children = (
+				0A7CAA5C2981AB9E00637A7E /* Samurajj.mp3 */,
 				0A7CAA582981AADF00637A7E /* Marlboro.mp3 */,
 				0A7CAA4D298182F100637A7E /* Captain.mp3 */,
 				0A7CAA4C298182F000637A7E /* Minor.mp3 */,
 				0A7CAA4E298182F100637A7E /* Polovina_moya.mp3 */,
-				0A7CAA5C2981AB9E00637A7E /* Samurajj.mp3 */,
 			);
 			path = Audio;
 			sourceTree = "<group>";
@@ -276,9 +275,10 @@
 				0A21185228B02AFF0088E94F /* ProfileTableHeaderView.swift */,
 				0ADE5AD8289ACDC200DEBC90 /* ProfileHeaderView.swift */,
 				0A9B500328A83D23001CF929 /* LogInViewController.swift */,
-				0A7CAA652981C11F00637A7E /* ProfileOutput.swift */,
 				0A7CAA672981C13A00637A7E /* ProfileCoordinator.swift */,
 				0A7CAA692981C3F600637A7E /* ProfileViewModel.swift */,
+				0A7CAA6B2982503100637A7E /* ProfileOutput.swift */,
+				0A7CAA3F298175F600637A7E /* Audio */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -499,7 +499,6 @@
 				0A21185528B031F30088E94F /* PostTableViewCell.swift in Sources */,
 				0A9B500428A83D23001CF929 /* LogInViewController.swift in Sources */,
 				0A512108297E7BA4005565A0 /* FeedModel.swift in Sources */,
-				0A7CAA662981C11F00637A7E /* ProfileOutput.swift in Sources */,
 				0AB940312891E4F00040932D /* FeedViewController.swift in Sources */,
 				0A9B500628A8FA10001CF929 /* CustButton.swift in Sources */,
 				0A7CAA5F2981BD6000637A7E /* AppCoordinator.swift in Sources */,
@@ -520,6 +519,7 @@
 				0A21185D28B537340088E94F /* AllPhotos.swift in Sources */,
 				0A21185B28B5211C0088E94F /* PhotosCollectionViewCell.swift in Sources */,
 				0A512106297D4DAD005565A0 /* CustomButton.swift in Sources */,
+				0A7CAA6C2982503100637A7E /* ProfileOutput.swift in Sources */,
 				0ADE5AD9289ACDC200DEBC90 /* ProfileHeaderView.swift in Sources */,
 				0A5120FB29793F1A005565A0 /* Checker.swift in Sources */,
 				0A7CAA682981C13A00637A7E /* ProfileCoordinator.swift in Sources */,
