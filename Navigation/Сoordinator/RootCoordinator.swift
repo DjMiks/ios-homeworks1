@@ -44,8 +44,7 @@ final class RootCoordinator: AppCoordinator {
         
         let profileCoordinator = ProfileCoordinator(transitionHandler: profileTransitionHandler)
                profileCoordinator.makeProfileVC()
-               let profileVC = profileCoordinator
-               childs.append(profileCoordinator)
+               
         
         transitionHandler?.tabBar.backgroundColor = .systemGray6
         transitionHandler?.setViewControllers([ feedVC.transitionHandler,loginNC,], animated: true)
