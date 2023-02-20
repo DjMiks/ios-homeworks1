@@ -29,6 +29,7 @@
 		0A6C4FD32900565500B11409 /* CurrentUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6C4FD22900565500B11409 /* CurrentUserService.swift */; };
 		0A6C4FD52900567A00B11409 /* TestUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A6C4FD42900567A00B11409 /* TestUserService.swift */; };
 		0A713E352994DA4900B56386 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A713E342994DA4900B56386 /* NetworkManager.swift */; };
+		0A713E38299BEF6D00B56386 /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A713E37299BEF6D00B56386 /* JSON.swift */; };
 		0A7CAA4F298182F100637A7E /* Minor.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0A7CAA4C298182F000637A7E /* Minor.mp3 */; };
 		0A7CAA50298182F100637A7E /* Captain.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0A7CAA4D298182F100637A7E /* Captain.mp3 */; };
 		0A7CAA51298182F100637A7E /* Polovina_moya.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0A7CAA4E298182F100637A7E /* Polovina_moya.mp3 */; };
@@ -103,6 +104,7 @@
 		0A6C4FD22900565500B11409 /* CurrentUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserService.swift; sourceTree = "<group>"; };
 		0A6C4FD42900567A00B11409 /* TestUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUserService.swift; sourceTree = "<group>"; };
 		0A713E342994DA4900B56386 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		0A713E37299BEF6D00B56386 /* JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		0A7CAA4C298182F000637A7E /* Minor.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Minor.mp3; sourceTree = "<group>"; };
 		0A7CAA4D298182F100637A7E /* Captain.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Captain.mp3; sourceTree = "<group>"; };
 		0A7CAA4E298182F100637A7E /* Polovina_moya.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Polovina_moya.mp3; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 				0A04AB5F297FC7200003877D /* Assembly.swift */,
 				0A04AB65297FC74C0003877D /* RootCoordinator.swift */,
 				0A713E342994DA4900B56386 /* NetworkManager.swift */,
+				0A713E37299BEF6D00B56386 /* JSON.swift */,
 			);
 			path = "Сoordinator";
 			sourceTree = "<group>";
@@ -501,6 +504,7 @@
 				0AB9402F2891E49E0040932D /* PostViewController.swift in Sources */,
 				0A21185528B031F30088E94F /* PostTableViewCell.swift in Sources */,
 				0A9B500428A83D23001CF929 /* LogInViewController.swift in Sources */,
+				0A713E38299BEF6D00B56386 /* JSON.swift in Sources */,
 				0A512108297E7BA4005565A0 /* FeedModel.swift in Sources */,
 				0AB940312891E4F00040932D /* FeedViewController.swift in Sources */,
 				0A9B500628A8FA10001CF929 /* CustButton.swift in Sources */,
