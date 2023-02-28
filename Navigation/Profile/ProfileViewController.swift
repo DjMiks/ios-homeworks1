@@ -55,12 +55,14 @@ class ProfileViewController: UIViewController {
     // MARK: METOD
     
     private func setupView() {
-        #if DEBUG
-        view.backgroundColor = .systemYellow
-        #else
-        view.backgroundColor = .systemGreen
-        #endif
+//        #if DEBUG
+//        view.backgroundColor = .systemYellow
+//        #else
+//        view.backgroundColor = .systemGreen
+//        #endif
+        self.navigationController?.navigationBar.isHidden = true
     }
+    
     private func setupSubview() {
         view.addSubview(tableView)
     }

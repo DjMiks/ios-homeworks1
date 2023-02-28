@@ -7,10 +7,10 @@
 
 import UIKit
 
-public  protocol UserService {
-    
-     func loginCheck(login: String) -> User?
-}
+//public  protocol UserService {
+//
+//     func loginCheck(login: String) -> User?
+//}
 
 public class User {
     

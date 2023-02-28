@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import FirebaseAuth
+
 
 enum AppConfiguration: String, CaseIterable {
     
@@ -51,10 +53,10 @@ struct NetworkManager {
             do {
                 let answer = try JSONSerialization.jsonObject(with: data)
                 print(answer)
-                print("===============")
-                print("\(resp.allHeaderFields)")
-                print("===============")
-                print("\(resp.statusCode)")
+//                print("===============")
+//                print("\(resp.allHeaderFields)")
+//                print("===============")
+//                print("\(resp.statusCode)")
                 return
                 
                 // error - The Internet connection appears to be offline.

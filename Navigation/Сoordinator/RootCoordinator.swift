@@ -31,7 +31,8 @@ final class RootCoordinator: AppCoordinator {
         let loginNC = UINavigationController(rootViewController: loginVC)
         loginNC.tabBarItem.image = UIImage(systemName: "person.crop.circle")
         loginNC.tabBarItem.title = "Log In"
-        loginVC.loginDelegate = MyLoginFactory().makeLoginInspector()
+    //    loginVC.loginDelegate = MyLoginFactory().makeLoginInspector()
+        loginVC.loginDelegate = LoginInspector()
         
         let feedTransitionHandler = UINavigationController()
         
