@@ -9,7 +9,7 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
-    var output: FeedOutput?
+    var output: ProfileOutput?
     
     fileprivate lazy var data = PostTape.make()
 

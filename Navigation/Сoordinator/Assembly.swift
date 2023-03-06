@@ -20,5 +20,14 @@ final class Assembly {
         return profileVC
     }
     
+    func createPhotoVC() -> PhotosViewController {
+        let model = AllPhotos.photoImage
+        let viewModel = PhotosViewModel(model: model)
+        let view = PhotosViewController()
+        
+  //      view.viewModel = viewModel
+        return view
+    }
 
+    
 }

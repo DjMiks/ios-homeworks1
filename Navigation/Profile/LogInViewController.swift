@@ -189,11 +189,12 @@ class LogInViewController: UIViewController {
         loginTextField.autocapitalizationType = .none
         loginTextField.backgroundColor = .systemGray6
         
+        
         loginTextField.layer.borderColor = UIColor.lightGray.cgColor
         loginTextField.layer.borderWidth = 0.5
         loginTextField.returnKeyType = UIReturnKeyType.done
         loginTextField.autocorrectionType = .no
-        loginTextField.keyboardType = .namePhonePad
+        loginTextField.keyboardType = .emailAddress
         loginTextField.delegate = self
         return loginTextField
     }()
@@ -427,7 +428,7 @@ class LogInViewController: UIViewController {
             contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             
-            logoImageVK.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 200),
+            logoImageVK.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 220),
             logoImageVK.heightAnchor.constraint(equalToConstant: 100),
             logoImageVK.widthAnchor.constraint(equalToConstant: 100),
             logoImageVK.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
@@ -504,7 +505,7 @@ class LogInViewController: UIViewController {
                 let ac = UIAlertController(title: "User does not exist", message: "Would you like to create ?", preferredStyle: .alert)
                 ac.addAction(UIAlertAction(title: "Cansel", style: .cancel))
                 ac.addAction(UIAlertAction(title: "Create", style: .default, handler: {[self] _ in
-                    self.loginDelegate?.singUp(inputedLogin: mail, inputedPass: password, completion: { isCreated in
+                    self.loginDelegate?.signUp(inputedLogin: mail, inputedPass: password, completion: { isCreated in
                         
                         if isCreated {
                             let ac = UIAlertController(title: "Success", message: "User was created", preferredStyle: .alert)
@@ -534,20 +535,19 @@ extension LogInViewController: UITextFieldDelegate {
     }
 }
     protocol LoginViewControllerDelegate {
-        func chechCredentials(inputedLogin: String, inputedPass: String,completion: ((_ status:LoginResult)->Void)?)
-        func singUp(inputedLogin:String, inputedPass: String, completion: ((_ isCreated: Bool)->Void)?)
-    }
-    
-    struct LoginInspector: LoginViewControllerDelegate {
         
-        func singUp(inputedLogin: String, inputedPass: String, completion: ((Bool) -> Void)?) {
-            return CheckerService().signUp(inputedLogin: inputedLogin, inputedPass: inputedPass, completion: completion)
-        }
-        func chechCredentials(inputedLogin: String, inputedPass: String, completion: ((LoginResult) -> Void)?) {
-            return CheckerService().chechCredentials(inputedLogin: inputedLogin, inputedPass: inputedPass, completion: completion)
-        }
-       
-        
+        func chechCredentials(inputedLogin: String, inputedPass: String, completion: ((_ status: LoginResult)->Void)?)
+        func signUp(inputedLogin: String, inputedPass: String, completion: ((_ isCreated: Bool) -> Void)?)
     }
 
+    struct LoginInspector: LoginViewControllerDelegate {
+        
+        func signUp(inputedLogin: String, inputedPass: String, completion: ((_ isCreated: Bool) -> Void)?) {
+            return CheckerService().signUp(inputedLogin: inputedLogin, inputedPass: inputedPass, completion: completion)
+        }
+        
+        func chechCredentials(inputedLogin: String, inputedPass: String, completion: ((_ status: LoginResult) -> Void)?) {
+            return CheckerService().chechCredentials(inputedLogin: inputedLogin, inputedPass: inputedPass, completion: completion)
+        }
+    }
 
