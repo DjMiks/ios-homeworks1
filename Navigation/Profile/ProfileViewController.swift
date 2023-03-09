@@ -9,7 +9,7 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
-    var output: FeedOutput?
+    var output: ProfileOutput?
     
     fileprivate lazy var data = PostTape.make()
 
@@ -55,12 +55,14 @@ class ProfileViewController: UIViewController {
     // MARK: METOD
     
     private func setupView() {
-        #if DEBUG
-        view.backgroundColor = .systemYellow
-        #else
-        view.backgroundColor = .systemGreen
-        #endif
+//        #if DEBUG
+//        view.backgroundColor = .systemYellow
+//        #else
+//        view.backgroundColor = .systemGreen
+//        #endif
+        self.navigationController?.navigationBar.isHidden = true
     }
+    
     private func setupSubview() {
         view.addSubview(tableView)
     }

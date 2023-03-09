@@ -11,7 +11,7 @@ import Foundation
 
  final class PhotosViewController: UIViewController {
      
-    
+     
     // MARK: DATA
 
      let imageProcessor = ImageProcessor()

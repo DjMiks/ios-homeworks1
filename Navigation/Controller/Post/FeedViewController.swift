@@ -31,7 +31,17 @@ class FeedViewController: UIViewController {
          return field
     }()
     
-    private lazy var checkGuessButton = CustomButton(action: check, title: "Check Pass", titleColor: .black, color: .systemBlue)
+    private lazy var checkGuessButton = CustomButton(title: "Check Pass", titleColor: .black, color: .systemBlue) {
+        self.checkPass()
+    }
+    
+    private lazy var button1 = CustomButton(title: "ShowPost", titleColor: .white, color: .orange) {
+        self.showPost()
+    }
+    
+    private lazy var button2 = CustomButton(title: "Show post again",  titleColor: .black, color: .cyan) {
+        self.showPost()
+    }
 
     
     
@@ -72,7 +82,7 @@ private lazy var button: UIButton = {
        checkGuessButton.layer.borderColor = UIColor.black.cgColor
        setupConstraint()
        setupButton()
-       checkGuessButton.setup()
+      
    }
     
     private func setupConstraint() {
@@ -106,8 +116,42 @@ private lazy var button: UIButton = {
         self.button.heightAnchor.constraint(equalToConstant: 100).isActive = true
     }
 
-   
+    private func isPassCorrect() throws {
+        let check = FeedModel()
+        
+        if self.checkTextField.text != "" {
+            if check.check(word: self.checkTextField.text!) {
+                let ac = UIAlertController(title: "Верно!", message: "Ты все сделал правильно!", preferredStyle: .alert)
+                let OKButton = UIAlertAction(title: "OK", style: .default)
+                ac.addAction(OKButton)
+                self.present(ac, animated: true)
+                self.checkLabel.backgroundColor = .green
+            } else {
+                throw CustomError.wrongPassword
+            }
+        } else {
+            throw CustomError.emptyTextField
+        }
+    }
 
+    
+    private func checkPass() {
+        do {
+            try isPassCorrect()
+        } catch CustomError.emptyTextField {
+            let ac = UIAlertController(title: "Пусто", message: "Поле не заполнено", preferredStyle: .alert)
+            let OKButton = UIAlertAction(title: "ОК", style: .default)
+            ac.addAction(OKButton)
+            self.present(ac, animated: true)
+        } catch {
+            let ac = UIAlertController(title: "Ошибка", message: "Не верно слово!", preferredStyle: .alert)
+            let OKButton = UIAlertAction(title: "Попробовать снова", style: .default)
+            ac.addAction(OKButton)
+            self.present(ac, animated: true)
+            self.checkLabel.backgroundColor = .red
+        }
+    }
+ 
 
     @objc private func buttonAction() {
         let postViewController = PostViewController()

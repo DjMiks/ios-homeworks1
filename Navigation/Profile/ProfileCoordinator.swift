@@ -7,9 +7,7 @@
 
  import UIKit
 
-final class ProfileCoordinator: AppCoordinator, FeedOutput {
-    func showPost() {
-    }
+final class ProfileCoordinator: AppCoordinator {
     
     
     var transitionHandler: UINavigationController
@@ -31,8 +29,21 @@ final class ProfileCoordinator: AppCoordinator, FeedOutput {
         profileVC.tabBarItem.image = UIImage(systemName: "person.crop.circle")
         transitionHandler.pushViewController(profileVC, animated: true)
     }
-}
-   
-
     
+    func toPhotosVC() {
+    let nextViewController = profileAssembly.createPhotoVC()
+    transitionHandler.navigationBar.isHidden = false
+    transitionHandler.pushViewController(
+        nextViewController, animated: true
+        )
+    }
+
+}
+
+extension ProfileCoordinator: ProfileOutput {
+    func showPhotos() {
+        toPhotosVC()
+    }
+}
+
 

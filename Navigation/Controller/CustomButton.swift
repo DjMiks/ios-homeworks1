@@ -9,34 +9,35 @@ import UIKit
 
 class CustomButton: UIButton {
     
-    private let buttonAction: () -> ()
+    private let buttonCloused: (() -> ())
     
-    init (action: @escaping () -> (),
+    init (
          title: String,
          titleColor: UIColor,
-         color: UIColor
+         color: UIColor,
+         clous: @escaping (() -> ())
     ) {
-        self.buttonAction = action
+        self.buttonCloused = clous
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
         setTitle(title, for: .normal)
+        self.center = center
         setTitleColor(titleColor, for: .normal)
         backgroundColor = color
+        sizeToFit()
+        addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         
+    }
+    
+    @objc private func buttonTapped() {
+        buttonCloused()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setup() {
-        addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
-        sizeToFit()
-        self.center = center
-        layer.cornerRadius = 15
-    }
-    @objc func buttonTapped() {
-        buttonAction()
-    }
+    
+   
     
 }

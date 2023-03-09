@@ -9,15 +9,15 @@ import Foundation
 import UIKit
 
 
-final class TestUserService: UserService {
-    
-   public let testUser = User(login: "test", fullName: "Test", avatar: UIImage(named: "logo_vk")!, status: "Test profile")
-    
-    let password: String = "test"
-      
-    
-    func loginCheck(login: String) -> User? {
-        login == testUser.login ? testUser : nil
-        
-    }
-}
+//final class TestUserService: UserService {
+//    
+//   public let testUser = User(login: "test", fullName: "Test", avatar: UIImage(named: "logo_vk")!, status: "Test profile")
+//    
+//    let password: String = "test"
+//      
+//    
+//    func loginCheck(login: String) -> User? {
+//        login == testUser.login ? testUser : nil
+//        
+//    }
+//}
