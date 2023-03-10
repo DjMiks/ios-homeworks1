@@ -24,6 +24,10 @@
 		0A512101297C5832005565A0 /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = 0A512100297C5832005565A0 /* iOSIntPackage */; };
 		0A512106297D4DAD005565A0 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A512105297D4DAD005565A0 /* CustomButton.swift */; };
 		0A512108297E7BA4005565A0 /* FeedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A512107297E7BA4005565A0 /* FeedModel.swift */; };
+		0A540A1129BA643A0071FCC7 /* RealmCore in Frameworks */ = {isa = PBXBuildFile; productRef = 0A540A1029BA643A0071FCC7 /* RealmCore */; };
+		0A540A1429BA64770071FCC7 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 0A540A1329BA64770071FCC7 /* Realm */; };
+		0A540A1629BA64770071FCC7 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0A540A1529BA64770071FCC7 /* RealmSwift */; };
+		0A540A1829BA64CC0071FCC7 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A540A1729BA64CC0071FCC7 /* UserModel.swift */; };
 		0A65DD312862634200B03691 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A65DD302862634200B03691 /* AppDelegate.swift */; };
 		0A65DD332862634200B03691 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A65DD322862634200B03691 /* SceneDelegate.swift */; };
 		0A65DD3A2862634300B03691 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A65DD392862634300B03691 /* Assets.xcassets */; };
@@ -105,6 +109,7 @@
 		0A5120FA29793F1A005565A0 /* Checker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checker.swift; sourceTree = "<group>"; };
 		0A512105297D4DAD005565A0 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		0A512107297E7BA4005565A0 /* FeedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedModel.swift; sourceTree = "<group>"; };
+		0A540A1729BA64CC0071FCC7 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		0A65DD2D2862634200B03691 /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A65DD302862634200B03691 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0A65DD322862634200B03691 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -155,10 +160,13 @@
 				0A96D27728F07C5A00A1025C /* StorageService.framework in Frameworks */,
 				0AE6193029A80E0100B26E27 /* FirebaseAnalytics in Frameworks */,
 				995E3CFC7B364B4849557EC3 /* Pods_Navigation.framework in Frameworks */,
+				0A540A1429BA64770071FCC7 /* Realm in Frameworks */,
 				0AE6193429A80E0100B26E27 /* FirebaseAppCheck in Frameworks */,
 				0AE6193629A80E0100B26E27 /* FirebaseAuth in Frameworks */,
 				0AE6193229A80E0100B26E27 /* FirebaseAnalyticsSwift in Frameworks */,
+				0A540A1629BA64770071FCC7 /* RealmSwift in Frameworks */,
 				0AE6193829A80E0100B26E27 /* FirebaseAuthCombine-Community in Frameworks */,
+				0A540A1129BA643A0071FCC7 /* RealmCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,6 +261,7 @@
 		0A6C4FCF2900558700B11409 /* UserAuto */ = {
 			isa = PBXGroup;
 			children = (
+				0A540A1729BA64CC0071FCC7 /* UserModel.swift */,
 				0A6C4FD0290055E400B11409 /* User.swift */,
 				0A5120F829793D9C005565A0 /* LoginFactory.swift */,
 				0A6C4FD22900565500B11409 /* CurrentUserService.swift */,
@@ -367,6 +376,9 @@
 				0AE6193329A80E0100B26E27 /* FirebaseAppCheck */,
 				0AE6193529A80E0100B26E27 /* FirebaseAuth */,
 				0AE6193729A80E0100B26E27 /* FirebaseAuthCombine-Community */,
+				0A540A1029BA643A0071FCC7 /* RealmCore */,
+				0A540A1329BA64770071FCC7 /* Realm */,
+				0A540A1529BA64770071FCC7 /* RealmSwift */,
 			);
 			productName = Navigation;
 			productReference = 0A65DD2D2862634200B03691 /* Navigation.app */;
@@ -421,6 +433,8 @@
 			packageReferences = (
 				0A5120FF297C5832005565A0 /* XCRemoteSwiftPackageReference "iOSIntPackage" */,
 				0AE6192E29A80E0100B26E27 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				0A540A0F29BA643A0071FCC7 /* XCRemoteSwiftPackageReference "realm-core" */,
+				0A540A1229BA64770071FCC7 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 0A65DD2E2862634200B03691 /* Products */;
 			projectDirPath = "";
@@ -540,6 +554,7 @@
 				0A7CAA5F2981BD6000637A7E /* AppCoordinator.swift in Sources */,
 				0A04AB66297FC74C0003877D /* RootCoordinator.swift in Sources */,
 				0A65DD312862634200B03691 /* AppDelegate.swift in Sources */,
+				0A540A1829BA64CC0071FCC7 /* UserModel.swift in Sources */,
 				0A7CAA6A2981C3F600637A7E /* ProfileViewModel.swift in Sources */,
 				0A6C4FD1290055E400B11409 /* User.swift in Sources */,
 				0A21185728B520710088E94F /* PhotosTableViewCell.swift in Sources */,
@@ -883,6 +898,22 @@
 				kind = branch;
 			};
 		};
+		0A540A0F29BA643A0071FCC7 /* XCRemoteSwiftPackageReference "realm-core" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-core";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.11.0;
+			};
+		};
+		0A540A1229BA64770071FCC7 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.32.2;
+			};
+		};
 		0AE6192E29A80E0100B26E27 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -898,6 +929,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0A5120FF297C5832005565A0 /* XCRemoteSwiftPackageReference "iOSIntPackage" */;
 			productName = iOSIntPackage;
+		};
+		0A540A1029BA643A0071FCC7 /* RealmCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0A540A0F29BA643A0071FCC7 /* XCRemoteSwiftPackageReference "realm-core" */;
+			productName = RealmCore;
+		};
+		0A540A1329BA64770071FCC7 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0A540A1229BA64770071FCC7 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		0A540A1529BA64770071FCC7 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0A540A1229BA64770071FCC7 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 		0AE6192F29A80E0100B26E27 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
