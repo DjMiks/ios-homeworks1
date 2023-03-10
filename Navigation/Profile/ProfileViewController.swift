@@ -19,7 +19,7 @@ class ProfileViewController: UIViewController {
         }
     }
     
-    var currenUser: User? = nil
+    var currenUser: User? = User(login: "", fullName: "StendUp", avatar: UIImage(named: "standup")!, status: "Stand Up")
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView.init (frame: .zero, style: .grouped)
@@ -48,18 +48,12 @@ class ProfileViewController: UIViewController {
         setupConstraints()
         tuneTableView()
     }
-//    override func viewWillAppear(_ animated: Bool) {
-//        self.navigationController?.navigationBar.isHidden = true
-//    }
+
     
     // MARK: METOD
     
     private func setupView() {
-//        #if DEBUG
-//        view.backgroundColor = .systemYellow
-//        #else
-//        view.backgroundColor = .systemGreen
-//        #endif
+
         self.navigationController?.navigationBar.isHidden = true
     }
     
@@ -158,9 +152,18 @@ extension ProfileViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
-            let nextViewController = PhotosViewController()
-            navigationController?.navigationBar.isHidden = false
-            navigationController?.pushViewController(nextViewController, animated: true)
+            output?.showPhotos()
         }
+//        if indexPath.section == 0 {
+//            let nextViewController = PhotosViewController()
+//            navigationController?.navigationBar.isHidden = false
+//            navigationController?.pushViewController(nextViewController, animated: true)
+//        }
+    }
+}
+
+extension ProfileViewController: ProfileOutput {
+    func showPhotos() {
+        output?.showPhotos()
     }
 }

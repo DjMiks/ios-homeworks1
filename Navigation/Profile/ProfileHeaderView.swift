@@ -16,7 +16,7 @@ class ProfileHeaderView: UIView {
         profileImage.clipsToBounds = true
         profileImage.layer.cornerRadius = 60
         profileImage.layer.borderWidth = 3
-        profileImage.layer.borderColor = UIColor.green.cgColor
+        profileImage.layer.borderColor = UIColor.tertiarySystemBackground.cgColor
         profileImage.translatesAutoresizingMaskIntoConstraints = false
          return profileImage
     }()
@@ -41,7 +41,7 @@ class ProfileHeaderView: UIView {
     
      lazy var statusButton: UIButton = {
         let statusButton = UIButton (type: .system)
-        statusButton.backgroundColor = .systemBlue
+        statusButton.backgroundColor = .systemCyan
         statusButton.setTitleColor(.white, for: .normal)
         statusButton.setTitle("Show status", for: .normal)
         statusButton.addTarget(self, action: #selector(self.buttonPressed), for: .touchUpInside)

@@ -8,11 +8,13 @@
 import UIKit
 import AVFoundation
 import FirebaseAuth
-
+import RealmSwift
 
 class LogInViewController: UIViewController {
     
     // MARK: delegete
+    
+    var realmService = RealmService()
     
     var loginDelegate: LoginViewControllerDelegate?
     
@@ -24,7 +26,7 @@ class LogInViewController: UIViewController {
     
     private var currentFile: AVAudioFile!
     
-    private let URLarray: [URL?] = [        
+    private let URLarray: [URL?] = [
         Bundle.main.url(forResource: "Captain", withExtension: ".mp3"),
         Bundle.main.url(forResource: "Malboro", withExtension: ".mp3"),
         Bundle.main.url(forResource: "Minor", withExtension: ".mp3"),
@@ -132,14 +134,13 @@ class LogInViewController: UIViewController {
         stackView.alignment = .fill
         
         stackView.addArrangedSubview(playBackButton)
-        stackView.addArrangedSubview(playPauseButton)        
+        stackView.addArrangedSubview(playPauseButton)
         stackView.addArrangedSubview(playForwardButton)
         stackView.addArrangedSubview(stopButton)
         
         
         return stackView
     }()
-    
     
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -248,12 +249,22 @@ class LogInViewController: UIViewController {
         logInButton.backgroundColor = UIColor(named: "ColorLog")
         
         
-        logInButton.addTarget(self, action: #selector(tap), for: .touchUpInside)
+        logInButton.addTarget(self, action: #selector(logIn), for: .touchUpInside)
         
         logInButton.isUserInteractionEnabled = true
         
         
         return logInButton
+    }()
+    
+    private lazy var newUserButton: UIButton = {
+       let buttoon = UIButton()
+        buttoon.translatesAutoresizingMaskIntoConstraints = false
+        buttoon.setTitle("New User", for: .normal)
+        buttoon.layer.cornerRadius = 10
+        buttoon.backgroundColor = .systemMint
+        buttoon.addTarget(self, action: #selector(createNewUser), for: .touchUpInside)
+        return buttoon
     }()
     
     //MARK: Сycles
@@ -269,11 +280,11 @@ class LogInViewController: UIViewController {
         setupSubview()
         NSLayoutConstraint.activate([
             currenSongLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            currenSongLabel.topAnchor.constraint(equalTo:logoImageVK.bottomAnchor, constant: 200),
+            currenSongLabel.topAnchor.constraint(equalTo:logoImageVK.bottomAnchor, constant: 20),
             
-            playerStackView.bottomAnchor.constraint(equalTo: stackView.topAnchor, constant: -30),
+            playerStackView.bottomAnchor.constraint(equalTo: stackView.topAnchor, constant: -20),
             playerStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
-            playerStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -30),
+            playerStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
             
         ])
         setupConstraints()
@@ -410,6 +421,7 @@ class LogInViewController: UIViewController {
         scrollView.addSubview(stackView)
         scrollView.addSubview(logoImageVK)
         scrollView.addSubview(logInButton)
+        scrollView.addSubview(newUserButton)
         
     }
     
@@ -428,12 +440,12 @@ class LogInViewController: UIViewController {
             contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
             contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             
-            logoImageVK.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 220),
+            logoImageVK.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 130),
             logoImageVK.heightAnchor.constraint(equalToConstant: 100),
             logoImageVK.widthAnchor.constraint(equalToConstant: 100),
             logoImageVK.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             
-            stackView.topAnchor.constraint(equalTo: logoImageVK.bottomAnchor, constant: 220),
+            stackView.topAnchor.constraint(equalTo: logoImageVK.bottomAnchor, constant: 130),
             stackView.heightAnchor.constraint(equalToConstant: 100),
             stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
@@ -443,6 +455,11 @@ class LogInViewController: UIViewController {
             logInButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             logInButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             
+            newUserButton.topAnchor.constraint(equalTo: logInButton.bottomAnchor, constant: 16),
+            newUserButton.heightAnchor.constraint(equalToConstant: 50),
+            newUserButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            newUserButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            
         ])
         contentView.subviews.last?.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
     }
@@ -450,7 +467,9 @@ class LogInViewController: UIViewController {
     private func setupKeyboardObservers() {
         let notificationCenter = NotificationCenter.default
         
-        notificationCenter.addObserver(self, selector: #selector(self.willShowKeyBoard(_:)), name: UIResponder.keyboardWillShowNotification, object: nil
+        notificationCenter.addObserver(
+            self, selector: #selector(self.willShowKeyBoard(_:)),
+            name: UIResponder.keyboardWillShowNotification, object: nil
         )
         
         notificationCenter.addObserver(
@@ -468,60 +487,76 @@ class LogInViewController: UIViewController {
     
     
     
-    @objc private func tap() {
+    @objc private func createNewUser() {
         
-        if loginTextField.text == "" || passwordTextField.text == "" {
+        var login: String?
+        var pass: String?
+        
+        if loginTextField.text == "" {
             let ac = UIAlertController(title: "Ops", message: "One of fields is empty", preferredStyle: .alert)
-            ac.addAction(UIAlertAction(title: "Ok", style: .cancel))
-            present(ac, animated: true)
+            let action = UIAlertAction(title: "OK", style: .cancel)
+            ac.addAction(action)
+            self.navigationController?.present(ac, animated: true)
+        }else {
+            login = loginTextField.text!
         }
         
-        
-        guard let mail = loginTextField.text,
-              let password = passwordTextField.text else {
-            print ("Missing field data")
-            return
+        if passwordTextField.text == ""{
+            let ac = UIAlertController(title: "Ops", message: "Fields is empty", preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: .cancel)
+            ac.addAction(action)
+            self.navigationController?.present(ac, animated: true)
+        } else {
+            pass = passwordTextField.text!
         }
         
-        loginDelegate?.chechCredentials(inputedLogin: mail, inputedPass: password, completion: {reslt in
-            switch reslt {
-            case .invalidPassword:
-                let ac = UIAlertController(title: "Try again ", message: "Invalid password", preferredStyle: .alert)
-                ac.addAction(UIAlertAction(title: "Ok", style: .cancel))
-                self.present(ac, animated: true)
-                
-            case .logined:
-                let profileVC = ProfileViewController()
-                let loginnedUser = User(login: mail, fullName: "You Name", avatar: UIImage(named: "masha")!, status: "Logined is profile! ")
-                profileVC.currenUser = loginnedUser
-                self.navigationController?.pushViewController(profileVC, animated: true)
-                
-            case .invalidEmailFormat:
-                let ac = UIAlertController(title: "Try again", message: "Invalid error mail format", preferredStyle: .alert)
-                ac.addAction(UIAlertAction(title: "Ok", style: .cancel))
-                self.present(ac, animated: true)
-                
-            case .userDoesNotExist:
-                let ac = UIAlertController(title: "User does not exist", message: "Would you like to create ?", preferredStyle: .alert)
-                ac.addAction(UIAlertAction(title: "Cansel", style: .cancel))
-                ac.addAction(UIAlertAction(title: "Create", style: .default, handler: {[self] _ in
-                    self.loginDelegate?.signUp(inputedLogin: mail, inputedPass: password, completion: { isCreated in
-                        
-                        if isCreated {
-                            let ac = UIAlertController(title: "Success", message: "User was created", preferredStyle: .alert)
-                            ac.addAction(UIAlertAction(title: "Ok", style: .cancel))
-                            self.present(ac, animated: true)
-                        } else {
-                            let ac = UIAlertController(title: "Ops", message: "Try another login or password", preferredStyle: .alert)
-                            ac.addAction(UIAlertAction(title: "Ok", style: .cancel))
-                            self.present(ac, animated: true)
-                        }
-                    })
-                }))
-                self.present(ac, animated: true)
+        if login != nil && pass != nil {
+            let usersArray:[UserModel] = Array(realmService.realm.objects(UserModel.self))
+            var currentUser:UserModel?
+            for user in usersArray {
+                if user.name == loginTextField.text {
+                    currentUser = user
+                }
             }
-            
-        })
+            if currentUser == nil {
+                self .realmService.createUser(name: login!, password: pass!)
+                let ac = UIAlertController(title: "Success", message: "User was created", preferredStyle: .alert)
+                let action = UIAlertAction(title: "OK", style: .cancel)
+                ac.addAction(action)
+                self.navigationController?.present(ac, animated: true)
+            } else {
+                let ac = UIAlertController(title: "Ops", message: "login exists, create a new one", preferredStyle: .alert)
+                let action = UIAlertAction(title: "OK", style: .cancel)
+                ac.addAction(action)
+                self.navigationController?.present(ac, animated: true)
+            }
+        }
+    }
+    
+    @objc private func logIn() {
+
+        let usersArray:[UserModel] = Array(realmService.realm.objects(UserModel.self))
+        
+        var currentUser: UserModel?
+        
+        for user in usersArray {
+            if user.name == loginTextField.text && user.password == passwordTextField.text {
+                currentUser = user
+            }
+        }
+        if currentUser != nil {
+            let profileVC = ProfileViewController()
+            let loginnedUser = User(login: currentUser?.name ?? "masha", fullName: "You Name", avatar: UIImage(named: "masha")!, status: "Welcom to Profile")
+            profileVC.currenUser = loginnedUser
+            UserDefaults().set(true, forKey: "IsLogined")
+            self.navigationController?.pushViewController(profileVC, animated: true)
+
+        } else {
+            let ac = UIAlertController(title: "Error", message: "Invalid login or password, please try again", preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "OK", style: .cancel)
+            ac.addAction(alertAction)
+            self.navigationController?.present(ac, animated: true)
+        }
     }
 }
 

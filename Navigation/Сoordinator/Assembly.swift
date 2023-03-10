@@ -22,10 +22,10 @@ final class Assembly {
     
     func createPhotoVC() -> PhotosViewController {
         let model = AllPhotos.photoImage
-        let viewModel = PhotosViewModel(model: model)
+     //   let viewModel = PhotosViewModel(model: model)
         let view = PhotosViewController()
         
-  //      view.viewModel = viewModel
+//       view.viewModel = viewModel
         return view
     }
 
