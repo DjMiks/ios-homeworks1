@@ -11,6 +11,8 @@ class ProfileViewController: UIViewController {
     
     var output: ProfileOutput?
     
+    let coreManager = CoreDataManager.shared
+    
     fileprivate lazy var data = PostTape.make()
 
     var viewModel: ProfileVIewModel! {
@@ -120,7 +122,18 @@ extension ProfileViewController: UITableViewDataSource {
         let data = data[indexPath.row]
         cell.setup(with: data)
         
+        let tap = UITapGestureRecognizer()
+        tap.numberOfTapsRequired = 2
+        tap.addTarget(self, action: #selector(doubleTap))
+        cell.addGestureRecognizer(tap)
+        
         return cell
+    }
+    
+    @objc func doubleTap() {
+        let indexPath = tableView.indexPathForSelectedRow
+        let selectedCell = data[indexPath!.row]
+        coreManager.addPost(author: selectedCell.author, description: selectedCell.description, image: selectedCell.image, likes: selectedCell.likes, views: selectedCell.views)
     }
 }
 
