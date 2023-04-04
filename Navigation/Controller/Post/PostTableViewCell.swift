@@ -12,7 +12,7 @@ class PostTableViewCell: UITableViewCell {
 
     // MARK: SubView
     
-    private lazy var authorLabel: UILabel = {
+     lazy var authorLabel: UILabel = {
         let authorLabel = UILabel()
         authorLabel.translatesAutoresizingMaskIntoConstraints = false
         authorLabel.font = UIFont.systemFont(ofSize: 20, weight:.bold)
@@ -22,7 +22,7 @@ class PostTableViewCell: UITableViewCell {
          return authorLabel
     }()
     
-    private lazy var postImage: UIImageView = {
+     lazy var postImage: UIImageView = {
         let postImage = UIImageView()
         postImage.translatesAutoresizingMaskIntoConstraints = false
         postImage.contentMode = .scaleAspectFit
@@ -31,7 +31,7 @@ class PostTableViewCell: UITableViewCell {
          return postImage
     }()
     
-    private lazy var postDescription: UILabel = {
+     lazy var postDescription: UILabel = {
        let postDescription = UILabel()
         postDescription.translatesAutoresizingMaskIntoConstraints = false
         postDescription.font = UIFont.systemFont(ofSize: 14, weight: .regular)
@@ -42,7 +42,7 @@ class PostTableViewCell: UITableViewCell {
          return postDescription
     }()
     
-    private lazy var numberOfLike: UILabel = {
+     lazy var numberOfLike: UILabel = {
        let numberOfLike = UILabel()
         numberOfLike.translatesAutoresizingMaskIntoConstraints = false
         numberOfLike.font = UIFont.systemFont(ofSize: 16, weight: .regular)
@@ -50,7 +50,7 @@ class PostTableViewCell: UITableViewCell {
          return numberOfLike
     }()
     
-    private lazy var numberOfView: UILabel = {
+     lazy var numberOfView: UILabel = {
        let numberOfView = UILabel()
         numberOfView.translatesAutoresizingMaskIntoConstraints = false
         numberOfView.font = UIFont.systemFont(ofSize: 16, weight: .regular)
@@ -59,7 +59,7 @@ class PostTableViewCell: UITableViewCell {
         return numberOfView
     }()
     
-    private lazy var stackView: UIStackView = {
+     lazy var stackView: UIStackView = {
         let strackView = UIStackView()
         strackView.translatesAutoresizingMaskIntoConstraints = false
         strackView.clipsToBounds = true
@@ -141,7 +141,7 @@ class PostTableViewCell: UITableViewCell {
         numberOfLike.text = String("Likes: \(post.likes)")
         numberOfView.text = String("Views: \(post.views)")
         
-        // MARK: color filter
+    // MARK: color filter
         
         let filter = ImageProcessor()
         guard let image = postImage.image else { return }
