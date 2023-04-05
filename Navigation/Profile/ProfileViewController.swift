@@ -77,7 +77,7 @@ class ProfileViewController: UIViewController {
     
      func tuneTableView() {
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.backgroundColor = .white
+        tableView.backgroundColor = .createColor(lightMode: .systemGray, darkMode: .white)
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: CellReuseID.base.rawValue)
         
         tableView.register(

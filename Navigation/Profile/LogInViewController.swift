@@ -93,7 +93,8 @@ class LogInViewController: UIViewController {
         let label = UILabel()
         label.backgroundColor = contentView.backgroundColor
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .systemTeal
+    //    label.textColor = .systemTeal
+        label.textColor = .createColor(lightMode: .systemBlue, darkMode: .systemTeal)
         label.text = ""
         return label
     }()
@@ -147,14 +148,14 @@ class LogInViewController: UIViewController {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.showsVerticalScrollIndicator = true
         scrollView.showsHorizontalScrollIndicator = false
-        scrollView.backgroundColor = .white
+        scrollView.backgroundColor = .createColor(lightMode: .white, darkMode: .systemGray)
         return scrollView
     }()
     
     private lazy var contentView: UIView = {
         let contentView = UIView()
         contentView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.backgroundColor = .white
+        contentView.backgroundColor = .createColor(lightMode: .white, darkMode: .systemGray)
         return contentView
         
     }()
@@ -163,7 +164,7 @@ class LogInViewController: UIViewController {
         let contentView = UIView()
         
         contentView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.backgroundColor = .white
+        contentView.backgroundColor = .createColor(lightMode: .white, darkMode: .systemGray)
         
         return contentView
     }()
@@ -246,7 +247,8 @@ class LogInViewController: UIViewController {
         logInButton.layer.cornerRadius = 10
         logInButton.setTitleColor(.white, for: .normal)
         logInButton.setTitle("Log In", for: .normal)
-        logInButton.backgroundColor = UIColor(named: "ColorLog")
+    //  logInButton.backgroundColor = UIColor(named: "ColorLog")
+        logInButton.backgroundColor = .createColor(lightMode: UIColor(named: "ColorLog") ?? .red, darkMode: .systemGray)
         
         
         logInButton.addTarget(self, action: #selector(logIn), for: .touchUpInside)

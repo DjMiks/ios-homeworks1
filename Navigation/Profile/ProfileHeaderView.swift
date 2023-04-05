@@ -41,7 +41,7 @@ class ProfileHeaderView: UIView {
     
      lazy var statusButton: UIButton = {
         let statusButton = UIButton (type: .system)
-        statusButton.backgroundColor = .systemCyan
+         statusButton.backgroundColor = .createColor(lightMode: UIColor(named: "ColorForLogo") ?? .systemIndigo, darkMode: .systemBlue)
         statusButton.setTitleColor(.white, for: .normal)
         statusButton.setTitle("Show status", for: .normal)
         statusButton.addTarget(self, action: #selector(self.buttonPressed), for: .touchUpInside)
@@ -62,7 +62,7 @@ class ProfileHeaderView: UIView {
         uiStatus.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         uiStatus.layer.borderWidth = 1
         uiStatus.layer.borderColor = UIColor.black.cgColor
-        uiStatus.backgroundColor = .white
+        uiStatus.backgroundColor = .createColor(lightMode: .white, darkMode: UIColor(named: "darkTF") ?? .white)
         uiStatus.layer.cornerRadius = 12
         uiStatus.translatesAutoresizingMaskIntoConstraints = false
          return uiStatus
@@ -75,7 +75,7 @@ class ProfileHeaderView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self .setupView()
-        self.backgroundColor = .systemGray6
+        self.backgroundColor = .createColor(lightMode: .systemGray, darkMode: .systemMint)
     }
     required init?(coder: NSCoder) {
         super.init(coder: coder)

@@ -47,7 +47,7 @@ import Foundation
          let group = DispatchGroup()
          group.enter()
          let start = CFAbsoluteTimeGetCurrent()
-         imageProcessor.processImagesOnThread(sourceImages: photoCollection, filter: .noir, qos: .default) { [self] comletion in for photoFromCollection in comletion {
+         imageProcessor.processImagesOnThread(sourceImages: photoCollection, filter: .fade, qos: .default) { [self] comletion in for photoFromCollection in comletion {
              if let  photo = photoFromCollection {
                  photoCollectionProcessed.append(UIImage(cgImage: photo))
              }

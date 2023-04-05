@@ -68,6 +68,8 @@
 		0AE6193429A80E0100B26E27 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 0AE6193329A80E0100B26E27 /* FirebaseAppCheck */; };
 		0AE6193629A80E0100B26E27 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 0AE6193529A80E0100B26E27 /* FirebaseAuth */; };
 		0AE6193829A80E0100B26E27 /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 0AE6193729A80E0100B26E27 /* FirebaseAuthCombine-Community */; };
+		0AF4FBB329DC5B6100AAA3D4 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF4FBB229DC5B6100AAA3D4 /* Color.swift */; };
+		0AF4FBB529DC708200AAA3D4 /* Sting + Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF4FBB429DC708200AAA3D4 /* Sting + Extention.swift */; };
 		995E3CFC7B364B4849557EC3 /* Pods_Navigation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE280F7FA50C446819905804 /* Pods_Navigation.framework */; };
 		FC1CEBC8EF5BDE7499C470A1 /* Pods_StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE857F80784FB1C206C34D03 /* Pods_StorageService.framework */; };
 /* End PBXBuildFile section */
@@ -149,6 +151,8 @@
 		0ADE5AD528944A9D00DEBC90 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		0ADE5AD8289ACDC200DEBC90 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		0AE6192C29A77B7200B26E27 /* CheckerServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckerServer.swift; sourceTree = "<group>"; };
+		0AF4FBB229DC5B6100AAA3D4 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		0AF4FBB429DC708200AAA3D4 /* Sting + Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sting + Extention.swift"; sourceTree = "<group>"; };
 		9E23AFD969E5C19D2B53B328 /* Pods-Navigation.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Navigation.debug.xcconfig"; path = "Target Support Files/Pods-Navigation/Pods-Navigation.debug.xcconfig"; sourceTree = "<group>"; };
 		B31EF434FEF9073FC89BB1B8 /* Pods-StorageService.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StorageService.debug.xcconfig"; path = "Target Support Files/Pods-StorageService/Pods-StorageService.debug.xcconfig"; sourceTree = "<group>"; };
 		B4D9543F9668672CC441EBAC /* Pods-StorageService.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StorageService.release.xcconfig"; path = "Target Support Files/Pods-StorageService/Pods-StorageService.release.xcconfig"; sourceTree = "<group>"; };
@@ -252,6 +256,7 @@
 		0A65DD2F2862634200B03691 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				0AF4FBB129DC5B0F00AAA3D4 /* Style */,
 				0A04AB5E297FC6F40003877D /* Сoordinator */,
 				0A65DD322862634200B03691 /* SceneDelegate.swift */,
 				0A65DD302862634200B03691 /* AppDelegate.swift */,
@@ -325,6 +330,15 @@
 				0A7CAA3F298175F600637A7E /* Audio */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		0AF4FBB129DC5B0F00AAA3D4 /* Style */ = {
+			isa = PBXGroup;
+			children = (
+				0AF4FBB229DC5B6100AAA3D4 /* Color.swift */,
+				0AF4FBB429DC708200AAA3D4 /* Sting + Extention.swift */,
+			);
+			path = Style;
 			sourceTree = "<group>";
 		};
 		1B7757AE4B9E98BE33083C83 /* Frameworks */ = {
@@ -559,10 +573,12 @@
 				0A512108297E7BA4005565A0 /* FeedModel.swift in Sources */,
 				0A27BE3929B13D150070BF48 /* PhotosViewModel.swift in Sources */,
 				0AB940312891E4F00040932D /* FeedViewController.swift in Sources */,
+				0AF4FBB529DC708200AAA3D4 /* Sting + Extention.swift in Sources */,
 				0A9B500628A8FA10001CF929 /* CustButton.swift in Sources */,
 				0A7CAA5F2981BD6000637A7E /* AppCoordinator.swift in Sources */,
 				0A04AB66297FC74C0003877D /* RootCoordinator.swift in Sources */,
 				0A65DD312862634200B03691 /* AppDelegate.swift in Sources */,
+				0AF4FBB329DC5B6100AAA3D4 /* Color.swift in Sources */,
 				0A540A1829BA64CC0071FCC7 /* UserModel.swift in Sources */,
 				0A7CAA6A2981C3F600637A7E /* ProfileViewModel.swift in Sources */,
 				0A6C4FD1290055E400B11409 /* User.swift in Sources */,
