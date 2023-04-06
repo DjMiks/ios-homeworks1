@@ -73,7 +73,7 @@ private lazy var button: UIButton = {
    override func viewDidLoad() {
        super.viewDidLoad()
        view.backgroundColor = .systemGreen
-       tabBarController?.tabBar.backgroundColor = .white
+       tabBarController?.tabBar.backgroundColor = .createColor(lightMode: .white, darkMode: .systemGray)
        view.addSubview(checkTextField)
        view.addSubview(checkGuessButton)
        view.addSubview(checkLabel)

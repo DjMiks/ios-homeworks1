@@ -35,7 +35,7 @@ class PhotosCollectionViewCell: UICollectionViewCell {
     
     private func setupView() {
         contentView.clipsToBounds = true
-        contentView.backgroundColor = .systemBackground
+        contentView.backgroundColor = .createColor(lightMode: .white, darkMode: .systemGray)
     }
     private func setupSubview() {
         contentView.addSubview(photoPreview)

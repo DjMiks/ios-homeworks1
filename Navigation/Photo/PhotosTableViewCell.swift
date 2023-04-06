@@ -15,7 +15,7 @@ class PhotosTableViewCell: UITableViewCell {
         let photosTitle = UILabel()
         photosTitle.translatesAutoresizingMaskIntoConstraints = false
         
-        photosTitle.textColor = .black
+        photosTitle.textColor = .createColor(lightMode: .white, darkMode: .systemGray)
         photosTitle.font = UIFont.systemFont (ofSize: 24, weight: .bold)
         photosTitle.text = "My Photo"
          return photosTitle
@@ -25,7 +25,7 @@ class PhotosTableViewCell: UITableViewCell {
            let photosArrow = UIImageView()
             photosArrow.translatesAutoresizingMaskIntoConstraints = false
             
-           let image = UIImage(systemName: "arrow.riaht")?.withTintColor(.black,renderingMode:.alwaysOriginal)
+            let image = UIImage(systemName: "arrow.riaht")?.withTintColor(.createColor(lightMode: .white, darkMode: .systemGray), renderingMode: .alwaysOriginal)
             photosArrow.image = image
               return photosArrow
     }()
@@ -117,7 +117,7 @@ class PhotosTableViewCell: UITableViewCell {
     }
     
     private func setupView() {
-        contentView.backgroundColor = .white
+        contentView.backgroundColor = .createColor(lightMode: .white, darkMode: .systemGray)
     }
     private func setupSubview() {
         contentView.addSubview(titleStrackView)

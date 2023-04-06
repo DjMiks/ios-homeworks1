@@ -17,7 +17,7 @@ class PostTableViewCell: UITableViewCell {
         authorLabel.translatesAutoresizingMaskIntoConstraints = false
         authorLabel.font = UIFont.systemFont(ofSize: 20, weight:.bold)
         authorLabel.numberOfLines = 2
-        authorLabel.textColor = .blue
+        authorLabel.textColor = .createColor(lightMode: .yellow, darkMode: .black)
         
          return authorLabel
     }()
@@ -35,7 +35,7 @@ class PostTableViewCell: UITableViewCell {
        let postDescription = UILabel()
         postDescription.translatesAutoresizingMaskIntoConstraints = false
         postDescription.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        postDescription.textColor = .systemGray
+         postDescription.textColor = .createColor(lightMode: .yellow, darkMode: .black)
         postDescription.numberOfLines = 0
         
         
@@ -46,7 +46,7 @@ class PostTableViewCell: UITableViewCell {
        let numberOfLike = UILabel()
         numberOfLike.translatesAutoresizingMaskIntoConstraints = false
         numberOfLike.font = UIFont.systemFont(ofSize: 16, weight: .regular)
-        numberOfLike.textColor = .black
+        numberOfLike.textColor = .createColor(lightMode: .yellow, darkMode: .black)
          return numberOfLike
     }()
     
@@ -54,7 +54,7 @@ class PostTableViewCell: UITableViewCell {
        let numberOfView = UILabel()
         numberOfView.translatesAutoresizingMaskIntoConstraints = false
         numberOfView.font = UIFont.systemFont(ofSize: 16, weight: .regular)
-        numberOfView.textColor = .black
+        numberOfView.textColor = .createColor(lightMode: .yellow, darkMode: .black)
         
         return numberOfView
     }()
@@ -94,7 +94,7 @@ class PostTableViewCell: UITableViewCell {
     
     private func setupView() {
         contentView.clipsToBounds = true
-        contentView.backgroundColor = .white
+        contentView.backgroundColor = .createColor(lightMode: .systemGray, darkMode: .systemMint)
     }
     
     private func setupSubview() {
