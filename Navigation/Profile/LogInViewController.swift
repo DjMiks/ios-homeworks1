@@ -338,7 +338,7 @@ class LogInViewController: UIViewController {
                 if result {
                     DispatchQueue.main.async {
                         let profileVC = ProfileViewController()
-                        profileVC.currenUser = User(login: "StandUp", fullName: "StandUp", avatar: UIImage(named: "masha")!, status: "Logined")
+                        profileVC.currenUser = User(login: "StandUp", fullName: "StandUp", avatar: UIImage(named: "masha")!, status: "StandUp")
                         self.navigationController?.pushViewController(profileVC, animated: true)
                     }
                 } else {
