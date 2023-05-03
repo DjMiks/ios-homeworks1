@@ -34,6 +34,7 @@
 		0A562FB429F2F25F003F3C2D /* NavigationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A562FB329F2F25F003F3C2D /* NavigationTests.swift */; };
 		0A562FBA29F2F2E9003F3C2D /* Assembly + Feed .swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A562F9C29F2DC45003F3C2D /* Assembly + Feed .swift */; };
 		0A562FBB29F2F2F0003F3C2D /* GetTitleManagerForTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A562F9E29F2DD1C003F3C2D /* GetTitleManagerForTest.swift */; };
+		0A562FBD29F7D62E003F3C2D /* AuthorizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A562FBC29F7D62E003F3C2D /* AuthorizationService.swift */; };
 		0A65DD312862634200B03691 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A65DD302862634200B03691 /* AppDelegate.swift */; };
 		0A65DD332862634200B03691 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A65DD322862634200B03691 /* SceneDelegate.swift */; };
 		0A65DD3A2862634300B03691 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A65DD392862634300B03691 /* Assets.xcassets */; };
@@ -133,6 +134,8 @@
 		0A562F9E29F2DD1C003F3C2D /* GetTitleManagerForTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTitleManagerForTest.swift; sourceTree = "<group>"; };
 		0A562FB129F2F25F003F3C2D /* NavigationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NavigationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A562FB329F2F25F003F3C2D /* NavigationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTests.swift; sourceTree = "<group>"; };
+		0A562FBC29F7D62E003F3C2D /* AuthorizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationService.swift; sourceTree = "<group>"; };
+		0A56301929F94604003F3C2D /* Navigation copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Navigation copy-Info.plist"; path = "/Users/li/Desktop/Обучение/Swift/UI/Navigation/work/Navigation copy-Info.plist"; sourceTree = "<absolute>"; };
 		0A65DD2D2862634200B03691 /* Navigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Navigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A65DD302862634200B03691 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0A65DD322862634200B03691 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -267,6 +270,7 @@
 		0A65DD242862634200B03691 = {
 			isa = PBXGroup;
 			children = (
+				0A562FBC29F7D62E003F3C2D /* AuthorizationService.swift */,
 				0A04AB65297FC74C0003877D /* RootCoordinator.swift */,
 				0A713E342994DA4900B56386 /* NetworkManager.swift */,
 				0A65DD2F2862634200B03691 /* Navigation */,
@@ -275,6 +279,7 @@
 				0A96D27228F07C5A00A1025C /* StorageService */,
 				0A65DD2E2862634200B03691 /* Products */,
 				CFE63D78AA408560564F5488 /* Pods */,
+				0A56301929F94604003F3C2D /* Navigation copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -646,6 +651,7 @@
 				0AB9402F2891E49E0040932D /* PostViewController.swift in Sources */,
 				0A21185528B031F30088E94F /* PostTableViewCell.swift in Sources */,
 				0A9B500428A83D23001CF929 /* LogInViewController.swift in Sources */,
+				0A562FBD29F7D62E003F3C2D /* AuthorizationService.swift in Sources */,
 				0A713E38299BEF6D00B56386 /* JSON.swift in Sources */,
 				0A512108297E7BA4005565A0 /* FeedModel.swift in Sources */,
 				0A27BE3929B13D150070BF48 /* PhotosViewModel.swift in Sources */,
@@ -733,6 +739,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Yalynytchev-IOS22.NavigationTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -753,6 +762,9 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Yalynytchev-IOS22.NavigationTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -886,6 +898,7 @@
 				DEVELOPMENT_TEAM = VUB6J5C765;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Navigation/Info.plist;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "We use Face ID/Touch ID";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -920,6 +933,7 @@
 				DEVELOPMENT_TEAM = VUB6J5C765;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Navigation/Info.plist;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "We use Face ID/Touch ID";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
